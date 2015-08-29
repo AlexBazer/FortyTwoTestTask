@@ -16,3 +16,5 @@ static
 *.dat
 .env
 assets/components/
+FortyTwoTestTask.sublime-project
+FortyTwoTestTask.sublime-workspace
