@@ -14,8 +14,9 @@ class IndexPageTest(TestCase):
         request.user = user
         response = index(request)
         # get rendered template
-        template = render_to_string('thetask/index.html', user=user)
+        template = render_to_string('thetask/index.html', {'user': user})
         self.assertEqual(template, response.content)
+        return response
 
     def setUp(self):
         # set up request factory
@@ -31,9 +32,11 @@ class IndexPageTest(TestCase):
         self.assertEqual(resolve('/').func, index)
 
     def test_auth_user(self):
-        # For now auth user will see empty body and title - "Hello <user_name> from theTask" 
-        self.assert_index(self.user)
+        response = self.assert_index(self.user)
+        # For now auth user request content will content username
+        self.assertContains(response, self.user.username)
 
     def test_anonymous_user(self):
-        # For anonymous user there will be button register with id="btn-register"
-        self.assert_index(AnonymousUser())
+        response = self.assert_index(AnonymousUser())
+        # For anonymous user request content will content Register word
+        self.assertContains(response, 'register')
