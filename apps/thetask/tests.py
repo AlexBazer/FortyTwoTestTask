@@ -14,7 +14,7 @@ class IndexPageTest(TestCase):
         request.user = user
         response = index(request)
         # get rendered template
-        template = render_to_string('thethask/index.html', user=user)
+        template = render_to_string('thetask/index.html', user=user)
         self.assertEqual(template, response.content)
 
     def setUp(self):
@@ -28,7 +28,7 @@ class IndexPageTest(TestCase):
 
     def test_resolve_index(self):
         # Simple resolve test
-        self.assertEqual(resolve('/'), index)
+        self.assertEqual(resolve('/').func, index)
 
     def test_auth_user(self):
         # For now auth user will see empty body and title - "Hello <user_name> from theTask" 
