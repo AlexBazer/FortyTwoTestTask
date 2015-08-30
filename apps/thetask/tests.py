@@ -1,9 +1,7 @@
 from django.core.urlresolvers import resolve
-from django.contrib.auth.models import User, AnonymousUser
-from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
-from django.template.loader import render_to_string
 from apps.thetask.views import index
 
 

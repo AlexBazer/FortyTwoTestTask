@@ -13,11 +13,10 @@
 
         <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
 
-        {% block extra_head %}{% endblock extra_head %}
+        {% block extra_head %}{% endblock %}
 
     </head>
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-        {% block content %}{% endblock content %}
+        {% block content %}{% endblock %}
     </body>
-    {% block extra_js %}{% endblock %}
 </html>
