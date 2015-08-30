@@ -17,6 +17,48 @@
     {% endif %}
 {% endblock %}
 
+{% block sub_content %}
+    {% if not user.is_authenticated %}
+        <style type="text/css">
+            .mdl-card.landing-mdl-card{
+                width: 300px;
+
+            }
+        </style>
+        <div class="landing-card">
+            <div class="mdl-card landing-mdl-card  mdl-shadow--2dp">
+              <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Welcome to The Task dear user!</h2>
+              </div>
+              <div class="mdl-card__media">
+                <img src="/static/img/tasks.jpeg" alt="">
+              </div>
+              <div class="mdl-card__supporting-text">
+              Hello dear user.
+              I glad to see you on my TheTask app.
+              You can register and get access to amazing features:
+              <ul>
+                <li>register and authenticate with my Facebook account</li>
+                <li>add tasks</li>
+                <li>update/delete tasks in-place</li>
+                <li>prioritise tasks by dragging them up and down</li>
+                <li>choose deadline for task</li>
+                <li>mark a task as 'done'</li>
+                <li>build a team by inviting Facebook friends</li>
+                <li>switch between them</li>
+                <li>assign/re-assign tasks to teammates</li>
+                <li>sort tasks by date, assignee, title</li>
+                <li>all task changes will be shown in real-time for other users</li>
+              </ul>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="#">Register</a>
+              </div>
+            </div>
+        </div>
+    {% endif%}
+{% endblock %}
+
 {% block extra_js %}
     <script src="/static/components/material-design-lite/material.min.js"></script>
 {% endblock %}
