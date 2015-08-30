@@ -1,17 +1,5 @@
-42-test template
-===========================
+42-test-alexbazer
 
-A Django 1.6+ project template
-
-Use fortytwo_test_task.settings when deploying with getbarista.com
-
-### Recomendations
-* apps in apps/ folder
-* use per-app templates folders
-* use per-app static folders
-* use migrations
-* use settings.local for different environments
-* common templates live in templates/
-* common static lives in assets/
-* management commands should be proxied to single word make commands, e.g make test
-
+GetBarista project - http://getbarista.com/project/2589/
+GetBarista link - http://fortytwotesttask-198.alexbazer.at.getbarista.com
+GitHab project - https://github.com/AlexBazer/FortyTwoTestTask
