@@ -1,7 +1,32 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+    <link rel="stylesheet" href="/static/components/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock%}
+
+
 {% block content %}
-    {% block sub_content %}{% endblock %}
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">The Task</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation">
+        {% block nav_links %}{% endblock %}
+      </nav>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+        {% block sub_content %}{% endblock %}
+    </div>
+  </main>
+</div>
 
     {% block extra_js %}{% endblock %}
 {% endblock %}

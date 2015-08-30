@@ -8,16 +8,15 @@
     {% endif %}
 {% endblock %}
 
-{% block extra_head %}
-    <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-{% endblock%}
-{% block sub_content %}
-<!-- Main content block -->
-{% if user.is_authenticated %}
-<p>Hello {{user.username}}!</p>
-{% else %}
-<a href="#">Register</a>
-{% endif %}
-    <script src="/bower_components/material-design-lite/material.min.js"></script>
+{% block nav_links %}
+    <!-- Main content block -->
+    {% if user.is_authenticated %}
+        <a class="mdl-navigation__link" href="#">{{user.username}}</a>
+    {% else %}
+        <a class="mdl-navigation__link" href="#">Register</a>
+    {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="/static/components/material-design-lite/material.min.js"></script>
 {% endblock %}
