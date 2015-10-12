@@ -15,3 +15,5 @@ Use fortytwo_test_task.settings when deploying with getbarista.com
 * common static lives in assets/
 * management commands should be proxied to single word make commands, e.g make test
 
+### Start with init commit ###
+
