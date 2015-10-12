@@ -1,0 +1,32 @@
+[
+  {
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+      "username": "alex",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2015-10-12T07:58:57Z",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$12000$WLFlwp5KsKdI$jZ6QBCeVpnDGKLXa1I9etuEn/RcFgBGjwr34kxE8pRU=",
+      "email": "davnobezimeni@gmail.com",
+      "date_joined": "2015-10-12T07:58:29Z"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "custom_auth.userprofile",
+    "fields": {
+      "birthday": "1985-10-07",
+      "user": 1,
+      "skype_id": "bazer_alex",
+      "other_contacts": "Odessa",
+      "biography": "Web Programmer with automation in mind ",
+      "jubber_id": "alexbazer@khavr.com"
+    }
+  }
+]
