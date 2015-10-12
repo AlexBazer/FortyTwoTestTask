@@ -6,7 +6,15 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     birthday = models.DateField(u'Birthday', blank=True, null=True)
-    jubber_id = models.CharField(u'Jubber id', max_length=256, blank=True, null=True)
-    skype_id = models.CharField(u'Skype id', max_length=256, blank=True, null=True)
+    jubber_id = models.CharField(
+        u'Jubber id',
+        max_length=256,
+        blank=True,
+        null=True)
+    skype_id = models.CharField(
+        u'Skype id',
+        max_length=256,
+        blank=True,
+        null=True)
     biography = models.TextField(u'Biography', blank=True, null=True)
     other_contacts = models.TextField(u'Other contacts', blank=True, null=True)
