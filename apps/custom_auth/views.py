@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
+from custom_auth.models import User
+
 
 # Create your views here.
 def index(request):
-    return render(request, 'custom_auth/index.html')
+    user = User.objects.get(pk=1)
+
+    return render(request, 'custom_auth/index.html', {'user': user})

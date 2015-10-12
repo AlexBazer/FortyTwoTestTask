@@ -38,7 +38,6 @@ class TestProfile(TestCase):
             'birthday',
             'jubber_id',
             'skype_id',
-            'boigraphy',
             'other_contacts',
         ]
         for field in test_fields:

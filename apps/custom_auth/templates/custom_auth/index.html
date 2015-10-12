@@ -4,6 +4,46 @@
     <title></title>
 </head>
 <body>
+<style type="text/css">
+    .col1, .col2{
+        width: 50%;
+        float:left;
+    }
+    .field h4,
+    .field div{
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+<h1>42 Coffee Cups Test Assignment</h1>
+<div class="col1">
+    <h4>{{user.first_name}}</h4>
+    <h4>{{user.last_name}}</h4>
+    <h4>{{user.userprofile.birthday|date:"Y-m-d"}}</h4>    
+    <div class="field">
+        <h4>Bio:</h4>
+        <div>{{user.userprofile.biography}}</div>        
+    </div>
+</div>
+<div class="col2">
+    <h3>Contacts</h3>
+    <div class="field">
+        <h4>Email:</h4>
+        <div>{{user.email}}</div>
+    </div>
+    <div class="field">
+        <h4>Jabber:</h4>
+        <div>{{user.userprofile.jubber_id}}</div>
+    </div>
+    <div class="field">
+        <h4>Skype:</h4>
+        <div>{{user.userprofile.skype_id}}</div>
+    </div>
+    <div class="field">
+        <h4>Other contacts:</h4>
+        <div>{{user.userprofile.other_contacts}}</div>
+    </div>
+</div>
 
 </body>
 </html>
