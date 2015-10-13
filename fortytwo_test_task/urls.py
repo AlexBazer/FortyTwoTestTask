@@ -10,5 +10,6 @@ urlpatterns = patterns(
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'custom_auth.views.index', name='index')
+    url(r'^$', 'custom_auth.views.index', name='index'),
+    url(r'^requests/$', 'custom_auth.views.requests', name='requests')
 )
