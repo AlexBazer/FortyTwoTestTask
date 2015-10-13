@@ -92,17 +92,19 @@ class TestProfile(TestCase):
         }]
         self.assertEqual(manual_serialization, serialize_requests(request))
 
-    # def test_api_requests_last_10(self):
-    #     """
-    #         Last 10 requests on api
-    #     """
-    #     for i in range(10):
-    #         self.client.get('/')
+    def test_api_requests_last_10(self):
+        """
+            Last 10 requests on api
+        """
+        for i in range(10):
+            self.client.get('/')
 
-    #     last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
-    #     print last_requests
+        last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
+        self.assertEqual(
+            serialize_requests(last_requests),
+            self.client.get('/api/requests/').content
+        )
         # response_requests = json.dumps(
-        #     self.client.get('/api/requests/').content
         # )
         # for request in last_requests:
         #     self.assertContains(response, request.timestamp.isoformat())
