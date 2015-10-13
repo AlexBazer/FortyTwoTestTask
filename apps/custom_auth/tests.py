@@ -1,13 +1,11 @@
 import json
 
-from django.test import TestCase, Client, RequestFactory
-from django.utils.timezone import now 
+from django.test import TestCase, Client
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 from custom_auth.models import SipmleRequest
 from custom_auth.views import serialize_requests
 
-from pprint import pprint
-from datetime import datetime
 
 class TestProfile(TestCase):
     fixtures = ['initial_data.json']
@@ -82,8 +80,10 @@ class TestProfile(TestCase):
         response = self.client.get('/api/requests/')
         self.assertEqual(response.status_code, 200)
 
-
     def test_serialize_requests(self):
+        """
+            Test serialize_requests function
+        """
         self.client.get('/')
         request = SipmleRequest.objects.all()[:1]
         manual_serialization = json.dumps([{
@@ -101,7 +101,9 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
-        last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
+        last_requests = SipmleRequest.\
+            objects.filter(viewed=False).\
+            order_by('-timestamp')[:10]
         self.assertEqual(
             serialize_requests(last_requests),
             self.client.get('/api/requests/').content
@@ -130,7 +132,8 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
-        last_requests_ids = list(SipmleRequest.objects.
+        last_requests_ids = list(
+            SipmleRequest.objects.
             filter(viewed=False).
             order_by('-timestamp').
             values_list('id', flat=True)[:10]

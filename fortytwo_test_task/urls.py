@@ -12,5 +12,9 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'custom_auth.views.index', name='index'),
     url(r'^requests/$', 'custom_auth.views.requests', name='requests'),
-    url(r'^api/requests/$', 'custom_auth.views.last_requests', name='last_requests')
+    url(
+        r'^api/requests/$',
+        'custom_auth.views.last_requests',
+        name='last_requests'
+    )
 )

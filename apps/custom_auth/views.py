@@ -5,6 +5,7 @@ from custom_auth.models import User, SipmleRequest
 import json
 from dateutil import parser as date_parser
 
+
 def index(request):
     user = User.objects.get(pk=1)
 
@@ -52,7 +53,7 @@ def last_requests(request):
 def serialize_requests(requests):
     """
         Serialize requests
-        :type QuestSet:requests 
+        :type QuestSet:requests
     """
     serialized = []
     for item in requests:
