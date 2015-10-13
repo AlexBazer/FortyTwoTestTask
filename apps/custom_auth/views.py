@@ -1,7 +1,8 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from custom_auth.models import User, SipmleRequest
-from pprint import pprint
+
+import json
 
 # Create your views here.
 def index(request):
@@ -14,4 +15,12 @@ def requests(request):
     return render(
         request,
         'custom_auth/requests.html'
+    )
+
+
+def last_requests(request):
+
+    return HttpResponse(
+        json.dumps({'status': 'OK'}),
+        content_type='application/json'
     )
