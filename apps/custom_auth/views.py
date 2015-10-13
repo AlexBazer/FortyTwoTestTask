@@ -24,9 +24,13 @@ def last_requests(request):
             objects.filter(viewed=False).\
             order_by('-timestamp')
         if request.GET.get('timestamp'):
-            last_requests = last_requests.filter(timestamp__gte=date_parser.parse(request.GET.get('timestamp')))
+            last_requests = last_requests.filter(
+                timestamp__gte=date_parser.parse(request.GET.get('timestamp'))
+            )
+        else:
+            last_requests = last_requests[:10]
         return HttpResponse(
-            serialize_requests(last_requests[:10]),
+            serialize_requests(last_requests),
             content_type='application/json'
         )
     elif request.method == 'POST' and request.is_ajax():
