@@ -4,6 +4,10 @@ from test_app.models import SipmleRequest
 
 
 class SaveRequestMiddleware(object):
+    """
+        Collect requests in simple form to db
+        Only skip api requests to make in easy for sqlite
+    """
     def process_response(self, request, response):
         # Collect request data to the dict
         if '/api/requests/' in request.path:

@@ -13,6 +13,9 @@ def index(request):
 
 
 def requests(request):
+    """
+        Initial requests page
+    """
     return render(
         request,
         'test_app/requests.html'
@@ -20,6 +23,12 @@ def requests(request):
 
 
 def last_requests(request):
+    """
+        Api requests handler
+        GET - returns or last 10 new request or
+            new requests with timestamp more than in GET request parameter
+        POST - Marks requests as viewed depanding on viewed_ids
+    """
     if request.method == 'GET':
         last_requests = SipmleRequest.\
             objects.filter(viewed=False).\
