@@ -53,7 +53,7 @@ class Migration(DataMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'custom_auth.userprofile': {
+        u'test_app.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'biography': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'birthday': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
@@ -65,5 +65,5 @@ class Migration(DataMigration):
         }
     }
 
-    complete_apps = ['custom_auth']
+    complete_apps = ['test_app']
     symmetrical = True

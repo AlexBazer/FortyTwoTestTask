@@ -3,8 +3,8 @@ import json
 from django.test import TestCase, Client
 from django.utils.timezone import now
 from django.contrib.auth.models import User
-from custom_auth.models import SipmleRequest
-from custom_auth.views import serialize_requests
+from test_app.models import SipmleRequest
+from test_app.views import serialize_requests
 
 
 class TestProfile(TestCase):

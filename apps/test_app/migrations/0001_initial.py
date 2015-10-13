@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'UserProfile'
-        db.create_table(u'custom_auth_userprofile', (
+        db.create_table(u'test_app_userprofile', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
             ('birthday', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
@@ -18,12 +18,12 @@ class Migration(SchemaMigration):
             ('biography', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('other_contacts', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
         ))
-        db.send_create_signal(u'custom_auth', ['UserProfile'])
+        db.send_create_signal(u'test_app', ['UserProfile'])
 
 
     def backwards(self, orm):
         # Deleting model 'UserProfile'
-        db.delete_table(u'custom_auth_userprofile')
+        db.delete_table(u'test_app_userprofile')
 
 
     models = {
@@ -63,7 +63,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'custom_auth.userprofile': {
+        u'test_app.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'biography': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'birthday': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
@@ -75,4 +75,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['custom_auth']
+    complete_apps = ['test_app']

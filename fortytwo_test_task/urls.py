@@ -10,11 +10,11 @@ urlpatterns = patterns(
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'custom_auth.views.index', name='index'),
-    url(r'^requests/$', 'custom_auth.views.requests', name='requests'),
+    url(r'^$', 'test_app.views.index', name='index'),
+    url(r'^requests/$', 'test_app.views.requests', name='requests'),
     url(
         r'^api/requests/$',
-        'custom_auth.views.last_requests',
+        'test_app.views.last_requests',
         name='last_requests'
     )
 )

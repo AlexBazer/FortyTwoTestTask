@@ -1,6 +1,6 @@
 import json
 
-from custom_auth.models import SipmleRequest
+from test_app.models import SipmleRequest
 
 
 class SaveRequestMiddleware(object):

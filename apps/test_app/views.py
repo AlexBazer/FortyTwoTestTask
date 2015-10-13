@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from custom_auth.models import User, SipmleRequest
+from test_app.models import User, SipmleRequest
 
 import json
 from dateutil import parser as date_parser
@@ -9,13 +9,13 @@ from dateutil import parser as date_parser
 def index(request):
     user = User.objects.get(pk=1)
 
-    return render(request, 'custom_auth/index.html', {'user': user})
+    return render(request, 'test_app/index.html', {'user': user})
 
 
 def requests(request):
     return render(
         request,
-        'custom_auth/requests.html'
+        'test_app/requests.html'
     )
 
 

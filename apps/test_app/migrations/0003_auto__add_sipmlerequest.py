@@ -9,18 +9,18 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'SipmleRequest'
-        db.create_table(u'custom_auth_sipmlerequest', (
+        db.create_table(u'test_app_sipmlerequest', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('data', self.gf('django.db.models.fields.TextField')()),
             ('viewed', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'custom_auth', ['SipmleRequest'])
+        db.send_create_signal(u'test_app', ['SipmleRequest'])
 
 
     def backwards(self, orm):
         # Deleting model 'SipmleRequest'
-        db.delete_table(u'custom_auth_sipmlerequest')
+        db.delete_table(u'test_app_sipmlerequest')
 
 
     models = {
@@ -60,14 +60,14 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'custom_auth.sipmlerequest': {
+        u'test_app.sipmlerequest': {
             'Meta': {'object_name': 'SipmleRequest'},
             'data': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'viewed': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
         },
-        u'custom_auth.userprofile': {
+        u'test_app.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'biography': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'birthday': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
@@ -79,4 +79,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['custom_auth']
+    complete_apps = ['test_app']
