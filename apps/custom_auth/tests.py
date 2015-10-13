@@ -5,6 +5,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from custom_auth.models import SipmleRequest
 
+from pprint import pprint
 
 class TestProfile(TestCase):
     fixtures = ['initial_data.json']
@@ -79,9 +80,10 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
-        last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
-        print last_requests
-        response = self.client.get('/requests/')
+        last_requests = list(
+            SipmleRequest.objects.all().order_by('-timestamp')[:10]
+        )
 
+        response = self.client.get('/requests/')
         for request in last_requests:
             self.assertContains(response, request.timestamp.isoformat())

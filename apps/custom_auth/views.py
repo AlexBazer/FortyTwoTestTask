@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from custom_auth.models import User, SipmleRequest
-
+from pprint import pprint
 
 # Create your views here.
 def index(request):
@@ -12,7 +12,6 @@ def index(request):
 
 def requests(request):
     last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
-    print last_requests
     return render(
         request,
         'custom_auth/requests.html',
