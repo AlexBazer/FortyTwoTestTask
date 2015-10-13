@@ -18,3 +18,9 @@ class UserProfile(models.Model):
         null=True)
     biography = models.TextField(u'Biography', blank=True, null=True)
     other_contacts = models.TextField(u'Other contacts', blank=True, null=True)
+
+
+class SipmleRequest(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    data = models.TextField('Required request data in json format')
+    viewed = models.BooleanField('Data is viewed', default=False)

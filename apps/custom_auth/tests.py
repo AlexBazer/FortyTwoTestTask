@@ -1,15 +1,16 @@
 import json
 
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 
 from django.contrib.auth.models import User
 from custom_auth.models import SipmleRequest
+
 
 class TestProfile(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        self.client = Client(HTTP_USER_AGENT='Mozilla/5.0',)
+        self.client = Client()
 
     def test_user_additional_data_exists(self):
         """
@@ -56,12 +57,10 @@ class TestProfile(TestCase):
                 continue
 
     def test_save_reqiest_middware(self):
-        response = self.client.get(
-            '/',
-            {'test_attr': True},
-            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-
-        request = SipmleRequest.objects.last()
-
-        request_from_json = json.loads(request.data)
-        self.assetEqual(response.request.meta.get('HTTP_USER_AGENT'), requet_from_json['user_agent'])
+        """
+            Send 3 requests and look for then in db
+        """
+        self.client.get('/')
+        self.client.get('/')
+        self.client.get('/')
+        self.assertEqual(3, SipmleRequest.objects.all().count())
