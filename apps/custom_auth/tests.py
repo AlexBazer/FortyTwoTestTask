@@ -88,7 +88,8 @@ class TestProfile(TestCase):
         manual_serialization = json.dumps([{
             'timestamp': request[0].timestamp.isoformat(),
             'data': request[0].data,
-            'viewed': request[0].viewed
+            'viewed': request[0].viewed,
+            'id': request[0].pk
         }])
         self.assertEqual(manual_serialization, serialize_requests(request))
 

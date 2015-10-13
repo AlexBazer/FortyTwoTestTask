@@ -53,5 +53,6 @@ def serialize_requests(requests):
         request['timestamp'] = item.timestamp.isoformat()
         request['data'] = item.data
         request['viewed'] = item.viewed
+        request['id'] = item.pk
         serialized.append(request)
     return json.dumps(serialized)
