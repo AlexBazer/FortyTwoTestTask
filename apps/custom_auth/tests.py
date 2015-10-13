@@ -64,3 +64,7 @@ class TestProfile(TestCase):
         self.client.get('/')
         self.client.get('/')
         self.assertEqual(3, SipmleRequest.objects.all().count())
+
+    def test_requests_page(self):
+        response = self.client.get('/requests/')
+        self.assertEqual(response.status_code, 200)
