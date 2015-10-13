@@ -66,5 +66,21 @@ class TestProfile(TestCase):
         self.assertEqual(3, SipmleRequest.objects.all().count())
 
     def test_requests_page(self):
+        """
+            Requests page existence
+        """
         response = self.client.get('/requests/')
         self.assertEqual(response.status_code, 200)
+
+    def test_requests_page_last_10_requests(self):
+        """
+            Last 10 requests on page
+        """
+        for i in range(10):
+            self.client.get('/')
+
+        response = self.client.get('/requests/')
+        last_requests = SipmleRequest.objects.all()[:10]
+
+        for request in last_requests:
+            self.assertContains(response, request.timestamp)
