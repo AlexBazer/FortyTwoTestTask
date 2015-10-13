@@ -19,9 +19,9 @@ def requests(request):
 
 
 def last_requests(request):
-
+    last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
     return HttpResponse(
-        json.dumps({'status': 'OK'}),
+        serialize_requests(last_requests),
         content_type='application/json'
     )
 
@@ -38,4 +38,4 @@ def serialize_requests(requests):
         request['data'] = item.data
         request['viewed'] = item.viewed
         serialized.append(request)
-    return serialized
+    return json.dumps(serialized)

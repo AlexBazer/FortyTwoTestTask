@@ -85,11 +85,11 @@ class TestProfile(TestCase):
     def test_serialize_requests(self):
         self.client.get('/')
         request = SipmleRequest.objects.all()[:1]
-        manual_serialization = [{
+        manual_serialization = json.dumps([{
             'timestamp': request[0].timestamp.isoformat(),
             'data': request[0].data,
             'viewed': request[0].viewed
-        }]
+        }])
         self.assertEqual(manual_serialization, serialize_requests(request))
 
     def test_api_requests_last_10(self):
@@ -99,7 +99,7 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
-        last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
+        last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
         self.assertEqual(
             serialize_requests(last_requests),
             self.client.get('/api/requests/').content
