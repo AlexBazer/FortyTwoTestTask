@@ -87,3 +87,16 @@ class TestProfile(TestCase):
         response = self.client.get('/requests/')
         for request in last_requests:
             self.assertContains(response, request.timestamp.isoformat())
+
+    def test_requests_is_viewed(self):
+        """
+            Mark viewed requests
+        """
+        self.client.get('/')
+        last_request_before_view = SipmleRequest.objects.last()
+
+        self.client.get('/requests/')
+        last_requests_after_view = SipmleRequest.objects.get(
+            pk=last_request_before_view.pk
+        )
+        self.assertTrue(last_requests_after_view.viewed)
