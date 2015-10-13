@@ -4,7 +4,7 @@ from custom_auth.models import User, SipmleRequest
 
 import json
 
-# Create your views here.
+
 def index(request):
     user = User.objects.get(pk=1)
 
@@ -24,3 +24,18 @@ def last_requests(request):
         json.dumps({'status': 'OK'}),
         content_type='application/json'
     )
+
+
+def serialize_requests(requests):
+    """
+        Serialize requests
+        :type QuestSet:requests 
+    """
+    serialized = []
+    for item in requests:
+        request = {}
+        request['timestamp'] = item.timestamp.isoformat()
+        request['data'] = item.data
+        request['viewed'] = item.viewed
+        serialized.append(request)
+    return serialized

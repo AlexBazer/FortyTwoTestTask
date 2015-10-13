@@ -4,6 +4,7 @@ from django.test import TestCase, Client, RequestFactory
 
 from django.contrib.auth.models import User
 from custom_auth.models import SipmleRequest
+from custom_auth.views import serialize_requests
 
 from pprint import pprint
 
@@ -80,19 +81,31 @@ class TestProfile(TestCase):
         response = self.client.get('/api/requests/')
         self.assertEqual(response.status_code, 200)
 
-    # def test_requests_page_last_10_requests(self):
+
+    def test_serialize_requests(self):
+        self.client.get('/')
+        request = SipmleRequest.objects.all()[:1]
+        manual_serialization = [{
+            'timestamp': request[0].timestamp.isoformat(),
+            'data': request[0].data,
+            'viewed': request[0].viewed
+        }]
+        self.assertEqual(manual_serialization, serialize_requests(request))
+
+    # def test_api_requests_last_10(self):
     #     """
-    #         Last 10 requests on page
+    #         Last 10 requests on api
     #     """
     #     for i in range(10):
     #         self.client.get('/')
 
-    #     last_requests = list(
-    #         SipmleRequest.objects.all().order_by('-timestamp')[:10]
-    #     )
-    #     response = self.client.get('/requests/')
-    #     for request in last_requests:
-    #         self.assertContains(response, request.timestamp.isoformat())
+    #     last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
+    #     print last_requests
+        # response_requests = json.dumps(
+        #     self.client.get('/api/requests/').content
+        # )
+        # for request in last_requests:
+        #     self.assertContains(response, request.timestamp.isoformat())
 
     # def test_requests_is_viewed(self):
     #     """
