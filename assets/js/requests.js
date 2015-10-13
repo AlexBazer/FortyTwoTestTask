@@ -25,8 +25,14 @@ jQuery(document).ready(function($) {
         });
         $container.append($tbody);
         $('#requests-table').html($container);
-    }    
-});
-$(function () {
-});
+    }
 
+    var markViewed = function(){
+        
+    }
+    var pollRequests = function(){
+
+        setTimeout(pollRequests, 2000);
+        
+    }
+});
