@@ -28,16 +28,11 @@ $.ajaxSetup({
     }
 });
 
-var markViewed;
 jQuery(document).ready(function($) {
     var requests = []
-    $.getJSON('/api/requests/').then(function(data){
-        console.log(data);
-        requests = data.concat(requests)
-        renderTable();
-    })
-    
+
     var renderTable = function(){
+        // Rander table
         var $container = $('<table>');
         var $thead = $('<thead>').html('\
             <th>Timestamp</th>\
@@ -47,29 +42,60 @@ jQuery(document).ready(function($) {
         $container.append($thead);
         
         var $tbody = $('<tbody>');
-        $.each(requests, function(index, val) {
+        $.each(requests, function(index, elem) {
             var $tr = $('<tr>');
-            $tr.append($('<td>').html(val.timestamp));
-            $tr.append($('<td>').html(val.data));
-            $tr.append($('<td>').html(val.viewed?'viewed':'new'));
+            $tr.append($('<td>').html(elem.timestamp));
+            $tr.append($('<td>').html(elem.data));
+            $tr.append($('<td>').html(elem.viewed?'viewed':'new'));
             $tbody.append($tr);
+            // console.log(elem.viewed)
+            if (!elem.viewed){
+                $tr.css('font-weight','bold');
+            }
         });
         $container.append($tbody);
         $('#requests-table').html($container);
     }
 
-    markViewed = function(){
-        viewed_ids = requests.filter(function(index, elem) {return !elem.viewed}).
-            map(function(elem, index){return elem.id});
+    var updateRequests = function(){
+        // Get requests
+        var last_timestamp = '';
+        if (requests.length > 0){
+            last_timestamp = requests[0].timestamp;
+        }
+        $.getJSON('/api/requests/', {timestamp: last_timestamp}).then(function(data){
+            requests = data.concat(requests);
+            renderTable();
+        })
+    }
+
+    var markViewed = function(){
+        // Send post rerquest to mark elements as viewd
+        var viewed_els = requests.filter(function(elem, index) {return !elem.viewed});
+        var viewed_ids = viewed_els.map(function(elem, index){return elem.id});
+        if (viewed_els.length == 0){
+            return;
+        }
+        
         $.post('/api/requests/',
             JSON.stringify({viewed_ids: viewed_ids}), 
             function(data, textStatus, xhr) {
-                console.log(data);
-            }, 'json');
+                if(data.status == 'ok'){
+                    // If server returned on than mark existed requests as viewed
+                    viewed_els.map(function(elem, index){
+                        elem.viewed = true;
+                    });
+                    renderTable();
+                }
+            });
     }
-    // var pollRequests = function(){
-
-    //     setTimeout(pollRequests, 2000);
-        
-    // }
+    var pollRequests = function(){
+        if (document.hasFocus()){
+            markViewed();
+        }
+        updateRequests();
+        setTimeout(pollRequests, 5000);
+    }
+    // Start polling
+    pollRequests();
 });

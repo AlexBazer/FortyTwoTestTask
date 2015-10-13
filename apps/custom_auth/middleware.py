@@ -6,6 +6,9 @@ from custom_auth.models import SipmleRequest
 class SaveRequestMiddleware(object):
     def process_response(self, request, response):
         # Collect request data to the dict
+        if '/api/requests/' in request.path:
+            # have to remove requests to api
+            return response
         request_to_store = {
             'host': request.get_host(),
             'path': request.path,

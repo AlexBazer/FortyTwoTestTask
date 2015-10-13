@@ -1,7 +1,7 @@
 import json
 
 from django.test import TestCase, Client, RequestFactory
-
+from django.utils.timezone import now 
 from django.contrib.auth.models import User
 from custom_auth.models import SipmleRequest
 from custom_auth.views import serialize_requests
@@ -111,11 +111,11 @@ class TestProfile(TestCase):
         """
             Last added after the timestamp
         """
-        timestamp = datetime.now().isoformat()
+        timestamp = now().isoformat()
         for i in range(10):
             self.client.get('/')
             if i == 3:
-                timestamp = datetime.now().isoformat()
+                timestamp = now().isoformat()
 
         response = self.client.get(
             '/api/requests/',
