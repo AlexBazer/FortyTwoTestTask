@@ -104,30 +104,28 @@ class TestProfile(TestCase):
             serialize_requests(last_requests),
             self.client.get('/api/requests/').content
         )
-        # response_requests = json.dumps(
-        # )
-        # for request in last_requests:
-        #     self.assertContains(response, request.timestamp.isoformat())
 
-    # def test_requests_is_viewed(self):
-    #     """
-    #         Mark viewed requests
-    #         And check if it exists after second view on /requests/ page
-    #     """
-    #     self.client.get('/')
-    #     last_request_before_view = SipmleRequest.objects.last()
+    def test_api_mark_viewed(self):
+        """
+            Api mark viewed requests
+        """
+        for i in range(10):
+            self.client.get('/')
 
-    #     self.client.get('/requests/')
-    #     last_requests_after_view = SipmleRequest.objects.get(
-    #         pk=last_request_before_view.pk
-    #     )
-    #     # Check in request was marked ad viewed
-    #     self.assertTrue(last_requests_after_view.viewed)
+        last_requests_ids = SipmleRequest.objects.\
+            filter(viewed=False).\
+            order_by('-timestamp').\
+            values_list('id', flat=True)[:10]
 
-    #     response = self.client.get('/requests/')
+        self.client.post(
+            '/api/requests/',
+            {'viewed_ids': last_requests_ids},
+            content_type='application/json'
+        )
+        #
+        last_requests = SipmleRequest.objects.\
+            filter(pk__in=last_requests_ids)
+        for item in last_requests:
+            self.assertTrue(item.viewed)
 
-    #     # Check if request exists after second view
-    #     self.assertNotContains(
-    #         response,
-    #         last_request_before_view.timestamp.isoformat()
-    #     )
+        # self.assertEqual(response.status_code, 200)

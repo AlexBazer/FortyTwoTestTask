@@ -19,11 +19,19 @@ def requests(request):
 
 
 def last_requests(request):
-    last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
-    return HttpResponse(
-        serialize_requests(last_requests),
-        content_type='application/json'
-    )
+    if request.method == 'GET':
+        last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
+        return HttpResponse(
+            serialize_requests(last_requests),
+            content_type='application/json'
+        )
+    elif request.method == 'POST':
+        return HttpResponse(
+            json.dumps({'status': 'ok'}),
+            content_type='application/json'
+        )
+
+    return HttpResponse("Method not allowed", status=405)
 
 
 def serialize_requests(requests):
