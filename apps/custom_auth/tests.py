@@ -73,40 +73,39 @@ class TestProfile(TestCase):
         response = self.client.get('/requests/')
         self.assertEqual(response.status_code, 200)
 
-    def test_requests_page_last_10_requests(self):
-        """
-            Last 10 requests on page
-        """
-        for i in range(10):
-            self.client.get('/')
+    # def test_requests_page_last_10_requests(self):
+    #     """
+    #         Last 10 requests on page
+    #     """
+    #     for i in range(10):
+    #         self.client.get('/')
 
-        last_requests = list(
-            SipmleRequest.objects.all().order_by('-timestamp')[:10]
-        )
+    #     last_requests = list(
+    #         SipmleRequest.objects.all().order_by('-timestamp')[:10]
+    #     )
+    #     response = self.client.get('/requests/')
+    #     for request in last_requests:
+    #         self.assertContains(response, request.timestamp.isoformat())
 
-        response = self.client.get('/requests/')
-        for request in last_requests:
-            self.assertContains(response, request.timestamp.isoformat())
+    # def test_requests_is_viewed(self):
+    #     """
+    #         Mark viewed requests
+    #         And check if it exists after second view on /requests/ page
+    #     """
+    #     self.client.get('/')
+    #     last_request_before_view = SipmleRequest.objects.last()
 
-    def test_requests_is_viewed(self):
-        """
-            Mark viewed requests
-            And check if it exists after second view on /requests/ page
-        """
-        self.client.get('/')
-        last_request_before_view = SipmleRequest.objects.last()
+    #     self.client.get('/requests/')
+    #     last_requests_after_view = SipmleRequest.objects.get(
+    #         pk=last_request_before_view.pk
+    #     )
+    #     # Check in request was marked ad viewed
+    #     self.assertTrue(last_requests_after_view.viewed)
 
-        self.client.get('/requests/')
-        last_requests_after_view = SipmleRequest.objects.get(
-            pk=last_request_before_view.pk
-        )
-        # Check in request was marked ad viewed
-        self.assertTrue(last_requests_after_view.viewed)
+    #     response = self.client.get('/requests/')
 
-        response = self.client.get('/requests/')
-
-        # Check if request exists after second view
-        self.assertNotContains(
-            response,
-            last_request_before_view.timestamp.isoformat()
-        )
+    #     # Check if request exists after second view
+    #     self.assertNotContains(
+    #         response,
+    #         last_request_before_view.timestamp.isoformat()
+    #     )

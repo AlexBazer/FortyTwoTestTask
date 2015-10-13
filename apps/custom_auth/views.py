@@ -11,11 +11,7 @@ def index(request):
 
 
 def requests(request):
-    last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
-    # Mark as views
-    SipmleRequest.objects.filter(pk__in=last_requests).update(viewed=True)
     return render(
         request,
-        'custom_auth/requests.html',
-        {'last_requests': last_requests}
+        'custom_auth/requests.html'
     )
