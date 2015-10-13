@@ -1,3 +1,34 @@
+// ADJUST AJAX TO HANDLE CSRFTOKEN
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = $.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+// these HTTP methods do not require CSRF protection
+return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+var markViewed;
 jQuery(document).ready(function($) {
     var requests = []
     $.getJSON('/api/requests/').then(function(data){
@@ -27,12 +58,18 @@ jQuery(document).ready(function($) {
         $('#requests-table').html($container);
     }
 
-    var markViewed = function(){
-        
+    markViewed = function(){
+        viewed_ids = requests.filter(function(index, elem) {return !elem.viewed}).
+            map(function(elem, index){return elem.id});
+        $.post('/api/requests/',
+            JSON.stringify({viewed_ids: viewed_ids}), 
+            function(data, textStatus, xhr) {
+                console.log(data);
+            }, 'json');
     }
-    var pollRequests = function(){
+    // var pollRequests = function(){
 
-        setTimeout(pollRequests, 2000);
+    //     setTimeout(pollRequests, 2000);
         
-    }
+    // }
 });

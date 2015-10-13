@@ -30,7 +30,6 @@ def last_requests(request):
         viewed_reqeust_ids = []
         if viewed_requests:
             viewed_reqeust_ids = viewed_requests.get('viewed_ids', [])
-
         SipmleRequest.objects.filter(pk__in=viewed_reqeust_ids).\
             update(viewed=True)
 
