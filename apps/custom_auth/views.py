@@ -25,7 +25,15 @@ def last_requests(request):
             serialize_requests(last_requests),
             content_type='application/json'
         )
-    elif request.method == 'POST':
+    elif request.method == 'POST' and request.is_ajax():
+        viewed_requests = json.loads(request.body)
+        viewed_reqeust_ids = []
+        if viewed_requests:
+            viewed_reqeust_ids = viewed_requests.get('viewed_ids', [])
+
+        SipmleRequest.objects.filter(pk__in=viewed_reqeust_ids).\
+            update(viewed=True)
+
         return HttpResponse(
             json.dumps({'status': 'ok'}),
             content_type='application/json'

@@ -112,20 +112,21 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
-        last_requests_ids = SipmleRequest.objects.\
-            filter(viewed=False).\
-            order_by('-timestamp').\
+        last_requests_ids = list(SipmleRequest.objects.
+            filter(viewed=False).
+            order_by('-timestamp').
             values_list('id', flat=True)[:10]
+        )
 
         self.client.post(
             '/api/requests/',
-            {'viewed_ids': last_requests_ids},
-            content_type='application/json'
+            json.dumps({'viewed_ids': last_requests_ids}),
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest',
+            content_type='application/json',
         )
-        #
+
         last_requests = SipmleRequest.objects.\
             filter(pk__in=last_requests_ids)
         for item in last_requests:
+            print item.viewed
             self.assertTrue(item.viewed)
-
-        # self.assertEqual(response.status_code, 200)
