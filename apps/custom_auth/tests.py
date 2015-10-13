@@ -73,6 +73,13 @@ class TestProfile(TestCase):
         response = self.client.get('/requests/')
         self.assertEqual(response.status_code, 200)
 
+    def test_api_last_requests(self):
+        """
+            Api last requests existence
+        """
+        response = self.client.get('/api/requests/')
+        self.assertEqual(response.status_code, 200)
+
     # def test_requests_page_last_10_requests(self):
     #     """
     #         Last 10 requests on page
