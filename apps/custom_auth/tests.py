@@ -91,6 +91,7 @@ class TestProfile(TestCase):
     def test_requests_is_viewed(self):
         """
             Mark viewed requests
+            And check if it exists after second view on /requests/ page
         """
         self.client.get('/')
         last_request_before_view = SipmleRequest.objects.last()
@@ -99,4 +100,13 @@ class TestProfile(TestCase):
         last_requests_after_view = SipmleRequest.objects.get(
             pk=last_request_before_view.pk
         )
+        # Check in request was marked ad viewed
         self.assertTrue(last_requests_after_view.viewed)
+
+        response = self.client.get('/requests/')
+
+        # Check if request exists after second view
+        self.assertNotContains(
+            response,
+            last_request_before_view.timestamp.isoformat()
+        )
