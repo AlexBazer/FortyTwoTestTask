@@ -121,7 +121,7 @@ class TestProfile(TestCase):
             '/api/requests/',
             {'timestamp': timestamp}
         )
-        self.assertEqual(7, len(json.loads(response.content)))
+        self.assertEqual(6, len(json.loads(response.content)))
 
     def test_api_mark_viewed(self):
         """

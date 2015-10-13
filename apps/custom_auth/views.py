@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from custom_auth.models import User, SipmleRequest
 
 import json
-
+from dateutil import parser as date_parser
 
 def index(request):
     user = User.objects.get(pk=1)
@@ -20,9 +20,13 @@ def requests(request):
 
 def last_requests(request):
     if request.method == 'GET':
-        last_requests = SipmleRequest.objects.filter(viewed=False).order_by('-timestamp')[:10]
+        last_requests = SipmleRequest.\
+            objects.filter(viewed=False).\
+            order_by('-timestamp')
+        if request.GET.get('timestamp'):
+            last_requests = last_requests.filter(timestamp__gte=date_parser.parse(request.GET.get('timestamp')))
         return HttpResponse(
-            serialize_requests(last_requests),
+            serialize_requests(last_requests[:10]),
             content_type='application/json'
         )
     elif request.method == 'POST' and request.is_ajax():

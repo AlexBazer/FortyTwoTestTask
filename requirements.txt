@@ -1,3 +1,4 @@
 42cc-pystyle==0.0.15
 Django==1.6.7
 South==1.0.2
+dateutils==0.6.6
