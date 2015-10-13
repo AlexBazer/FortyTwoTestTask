@@ -55,6 +55,13 @@ jQuery(document).ready(function($) {
         });
         $container.append($tbody);
         $('#requests-table').html($container);
+        renderTitle();
+    }
+
+    var renderTitle = function(){
+        // Render title - show number of new requests
+        var new_els = requests.filter(function(elem, index) {return !elem.viewed});
+        $('title').text('({{num_elem}}) new requests'.replace('{{num_elem}}', new_els.length));
     }
 
     var updateRequests = function(){
