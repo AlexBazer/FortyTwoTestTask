@@ -79,8 +79,9 @@ class TestProfile(TestCase):
         for i in range(10):
             self.client.get('/')
 
+        last_requests = SipmleRequest.objects.all().order_by('-timestamp')[:10]
+        print last_requests
         response = self.client.get('/requests/')
-        last_requests = SipmleRequest.objects.all()[:10]
 
         for request in last_requests:
-            self.assertContains(response, request.timestamp)
+            self.assertContains(response, request.timestamp.isoformat())

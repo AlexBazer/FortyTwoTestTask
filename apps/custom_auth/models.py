@@ -24,3 +24,6 @@ class SipmleRequest(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     data = models.TextField('Required request data in json format')
     viewed = models.BooleanField('Data is viewed', default=False)
+
+    def __unicode__(self):
+        return self.timestamp.isoformat()
