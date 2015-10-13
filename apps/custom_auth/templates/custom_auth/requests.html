@@ -4,21 +4,8 @@
     <title></title>
 </head>
 <body>
-<table>
-    <thead>
-        <th>Timestamp</th>
-        <th>Request JSON</th>
-        <th>Viewed</th>
-    </thead>
-    <tbody>
-        {% for item in last_requests %}
-        <tr>
-            <td>{{item.timestamp|date:'c'}}</td>
-            <td>{{item.data}}</td>
-            <td>{{item.viewed}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div id="requests-table"></div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/static/js/requests.js"></script>
 </body>
 </html>
