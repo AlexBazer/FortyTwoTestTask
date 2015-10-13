@@ -7,6 +7,7 @@ from custom_auth.models import SipmleRequest
 from custom_auth.views import serialize_requests
 
 from pprint import pprint
+from datetime import datetime
 
 class TestProfile(TestCase):
     fixtures = ['initial_data.json']
@@ -106,6 +107,22 @@ class TestProfile(TestCase):
             self.client.get('/api/requests/').content
         )
 
+    def test_api_requests_get_last_added(self):
+        """
+            Last added after the timestamp
+        """
+        timestamp = datetime.now().isoformat()
+        for i in range(10):
+            self.client.get('/')
+            if i == 3:
+                timestamp = datetime.now().isoformat()
+
+        response = self.client.get(
+            '/api/requests/',
+            {'timestamp': timestamp}
+        )
+        self.assertEqual(7, len(json.loads(response.content)))
+
     def test_api_mark_viewed(self):
         """
             Api mark viewed requests
@@ -129,5 +146,4 @@ class TestProfile(TestCase):
         last_requests = SipmleRequest.objects.\
             filter(pk__in=last_requests_ids)
         for item in last_requests:
-            print item.viewed
             self.assertTrue(item.viewed)
