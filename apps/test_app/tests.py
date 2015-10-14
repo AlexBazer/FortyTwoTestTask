@@ -16,6 +16,13 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
+    def test_index_template_userf(self):
+        """
+            Check that index.html template was used in rendering 
+        """
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'test_app/index.html')
+
     def test_fields_existence(self):
         """
             Test fields text existence in response content
