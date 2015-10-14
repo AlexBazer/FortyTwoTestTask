@@ -31,7 +31,7 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertEqual(user, response.context['user'])
 
-    def test_user_fields_existence_in_index_html(self):
+    def test_user_fields_existence_on_index_html(self):
         """
             Test user fields existence in index html
         """
@@ -55,3 +55,13 @@ class TestProfile(TestCase):
                 self.assertContains(response, content)
             else:
                 continue
+
+    def test_users_table_is_empty_on_index_context(self):
+        """
+            If there is no user in CustomUser table context should be empty
+        """
+        users = CustomUser.objects.all()
+        users.delete()
+        response = self.client.get('/')
+        self.assertFalse(response.context['user'])
+
