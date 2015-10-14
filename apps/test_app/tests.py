@@ -16,16 +16,24 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_index_template_userf(self):
+    def test_index_template_user(self):
         """
-            Check that index.html template was used in rendering 
+            Check that index.html template was used in rendering
         """
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'test_app/index.html')
 
-    def test_fields_existence(self):
+    def test_user_fields_existence_in_index_context(self):
         """
-            Test fields text existence in response content
+            Test user fields existence in index context
+        """
+        user = CustomUser.objects.first()
+        response = self.client.get('/')
+        self.assertEqual(user, response.context['user'])
+
+    def test_user_fields_existence_in_index_html(self):
+        """
+            Test user fields existence in index html
         """
         user = CustomUser.objects.first()
         response = self.client.get('/')
