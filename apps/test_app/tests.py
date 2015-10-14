@@ -27,7 +27,7 @@ class TestProfile(TestCase):
             'last_name',
             'email',
             'birthday',
-            'jubber_id',
+            'jabber_id',
             'skype_id',
             'other_contacts',
         ]
