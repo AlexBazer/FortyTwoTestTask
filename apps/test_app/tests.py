@@ -27,7 +27,7 @@ class TestProfile(TestCase):
         """
             Test fields text existence in response content
         """
-        user = CustomUser.objects.get(pk=1)
+        user = CustomUser.objects.first()
         response = self.client.get('/')
         # Fields to check
         test_fields = [
