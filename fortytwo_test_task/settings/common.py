@@ -41,9 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
 
-    'apps.custom_auth',
+    'apps.test_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -128,3 +127,5 @@ TEMPLATE_DIRS = (
 
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
+
+AUTH_USER_MODEL = 'test_app.CustomUser'

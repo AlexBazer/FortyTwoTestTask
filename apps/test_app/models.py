@@ -1,10 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
-# Create your models here.
+from django.contrib.auth.models import AbstractUser
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+class CustomUser(AbstractUser):
     birthday = models.DateField(u'Birthday', blank=True, null=True)
     jubber_id = models.CharField(
         u'Jubber id',
@@ -18,3 +16,6 @@ class UserProfile(models.Model):
         null=True)
     biography = models.TextField(u'Biography', blank=True, null=True)
     other_contacts = models.TextField(u'Other contacts', blank=True, null=True)
+
+    class Meta:
+        app_label = 'test_app'
