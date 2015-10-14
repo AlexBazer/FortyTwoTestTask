@@ -18,10 +18,11 @@ class TestProfile(TestCase):
 
     def test_fields_existence(self):
         """
-            Test fields in response content
+            Test fields text existence in response content
         """
         user = CustomUser.objects.get(pk=1)
         response = self.client.get('/')
+        # Fields to check
         test_fields = [
             'first_name',
             'last_name',
@@ -33,6 +34,7 @@ class TestProfile(TestCase):
         ]
 
         for field in test_fields:
+            # Get field value from model and check it in response context
             content = getattr(user, field)
             if content:
                 self.assertContains(response, content)
