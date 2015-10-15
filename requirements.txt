@@ -1,5 +1,5 @@
 42cc-pystyle==0.0.15
-Django==1.7.10
+Django==1.8.5
 argparse==1.2.1
 coverage==4.0.1
 dateutils==0.6.6
@@ -10,4 +10,5 @@ pyflakes==0.8.1
 python-dateutil==2.4.2
 pytz==2015.6
 six==1.10.0
+uWSGI==2.0.11.2
 wsgiref==0.1.2
