@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Use",
+				"UserProfile	class"
+			],
+			[
 				"last",
 				"last_timestamp"
 			],
@@ -232,37 +236,10 @@
 	"buffers":
 	[
 		{
-			"file": "apps/test_app/middleware.py",
+			"file": "apps/test_app/templates/test_app/index.html",
 			"settings":
 			{
-				"buffer_size": 1023,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "apps/test_app/admin.py",
-			"settings":
-			{
-				"buffer_size": 452,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "apps/test_app/views.py",
-			"settings":
-			{
-				"buffer_size": 2168,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "from django.db import models\nfrom django.contrib.auth.models import User\n# Create your models here.\n\n\nclass UserProfile(models.Model):\n    user = models.OneToOneField(User)\n    birthday = models.DateField(u'Birthday', blank=True, null=True)\n    jubber_id = models.CharField(\n        u'Jubber id',\n        max_length=256,\n        blank=True,\n        null=True)\n    skype_id = models.CharField(\n        u'Skype id',\n        max_length=256,\n        blank=True,\n        null=True)\n    biography = models.TextField(u'Biography', blank=True, null=True)\n    other_contacts = models.TextField(u'Other contacts', blank=True, null=True)\n    photo = models.ImageField()\n\n\nclass SipmleRequest(models.Model):\n    timestamp = models.DateTimeField(auto_now_add=True)\n    data = models.TextField('Required request data in json format')\n    viewed = models.BooleanField('Data is viewed', default=False)\n\n    def __unicode__(self):\n        return self.timestamp.isoformat()\n",
-			"file": "apps/test_app/models.py",
-			"file_size": 924,
-			"file_write_time": 130892139462048993,
-			"settings":
-			{
-				"buffer_size": 956,
+				"buffer_size": 1610,
 				"line_ending": "Unix"
 			}
 		},
@@ -270,7 +247,31 @@
 			"file": "apps/test_app/tests.py",
 			"settings":
 			{
-				"buffer_size": 4402,
+				"buffer_size": 1947,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/test_app/models.py",
+			"settings":
+			{
+				"buffer_size": 617,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/test_app/views.py",
+			"settings":
+			{
+				"buffer_size": 234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 145,
 				"line_ending": "Unix"
 			}
 		}
@@ -283,9 +284,21 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "exte",
 		"selected_items":
 		[
+			[
+				"exte",
+				"Snippet: extends"
+			],
+			[
+				"ext",
+				"Snippet: extends"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"html",
 				"Snippet: html"
@@ -303,10 +316,6 @@
 				"Set Syntax: JavaScript (Babel)"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"scss",
 				"Set Syntax: SCSS"
 			],
@@ -321,10 +330,6 @@
 			[
 				"block",
 				"Snippet: Django template block"
-			],
-			[
-				"exte",
-				"Snippet: extends"
 			],
 			[
 				"setf",
@@ -359,7 +364,7 @@
 	},
 	"console":
 	{
-		"height": 139.0,
+		"height": 117.0,
 		"history":
 		[
 			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
@@ -377,33 +382,50 @@
 	"expanded_folders":
 	[
 		"/home/alex/forwork/FortyTwoTestTask",
-		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth",
+		"/home/alex/forwork/FortyTwoTestTask/apps",
 		"/home/alex/forwork/FortyTwoTestTask/apps/test_app",
-		"/home/alex/forwork/FortyTwoTestTask/assets",
-		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task",
-		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task/settings"
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/static/test_app",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/static/test_app/css",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/templates/test_app",
+		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task/settings",
+		"/home/alex/forwork/FortyTwoTestTask/static",
+		"/home/alex/forwork/FortyTwoTestTask/templates"
 	],
 	"file_history":
 	[
-		"/home/alex/forwork/FortyTwoTestTask/requirements.txt",
-		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task/urls.py",
 		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task/settings/common.py",
+		"/home/alex/forwork/FortyTwoTestTask/Makefile",
+		"/home/alex/forwork/FortyTwoTestTask/requirements.txt",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/models.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/admin.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/static/test_app/css/index.css",
 		"/home/alex/forwork/FortyTwoTestTask/db.sqlite3",
+		"/home/alex/forwork/FortyTwoTestTask/templates/base.html",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/fixtures/initial_data.json",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/templates/test_app/index.html",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/tests.py",
+		"/home/alex/forwork/FortyTwoTestTask/assets/css/screen.css",
+		"/home/alex/forwork/FortyTwoTestTask/static/css/screen.css",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/views.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/models.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/admin.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/fixtures/initial_data.json",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/views.py",
+		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task/urls.py",
+		"/home/alex/forwork/FortyTwoTestTask/fortytwo_test_task.sublime-project",
+		"/home/alex/forwork/FortyTwoTestTask/.gitignore",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/middleware.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/forms.py",
+		"/home/alex/forwork/FortyTwoTestTask/apps/test_app/templates/test_app/edit_profile.html",
+		"/home/alex/forwork/FortyTwoTestTask/env/local/lib/python2.7/site-packages/django/conf/__init__.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/tests.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/migrations/0003_auto__add_sipmlerequest.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/migrations/0002_load_fixtures.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/migrations/0001_initial.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/middleware.py",
-		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/fixtures/initial_data.json",
-		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/admin.py",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/templates/custom_auth/index.html",
 		"/home/alex/forwork/FortyTwoTestTask/assets/js/requests.js",
-		"/home/alex/forwork/FortyTwoTestTask/assets/css/screen.css",
 		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/templates/custom_auth/requests.html",
-		"/home/alex/forwork/FortyTwoTestTask/apps/custom_auth/models.py",
-		"/home/alex/forwork/FortyTwoTestTask/Makefile",
-		"/home/alex/forwork/FortyTwoTestTask/.gitignore",
 		"/home/alex/forwork/FortyTwoTestTask/README.md",
 		"/home/alex/forwork/FortyTwoTestTask/env/local/lib/python2.7/site-packages/django/contrib/auth/models.py",
 		"/home/alex/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
@@ -419,7 +441,6 @@
 		"/usr/lib/python2.7/smtplib.py",
 		"/home/alex/forwork/FortyTwoTestTask/.bowerrc",
 		"/home/alex/Envs/42cc/local/lib/python2.7/site-packages/django/template/loader.py",
-		"/home/alex/forwork/FortyTwoTestTask/templates/base.html",
 		"/home/alex/Envs/42cc/local/lib/python2.7/site-packages/django/test/testcases.py",
 		"/home/alex/forwork/FortyTwoTestTask/FortyTwoTestTask.sublime-project",
 		"/home/alex/forwork/FortyTwoTestTask/bower.json",
@@ -499,20 +520,7 @@
 		"/home/alex/forwork/gurmanic/ajax_api/models.py",
 		"/home/alex/forwork/gurmanic/manage.py",
 		"/home/alex/forwork/gurmanic/utilities/views.py",
-		"/home/alex/forwork/gurmanic/auto_post/views.py",
-		"/home/alex/forwork/gurmanic/ajax_api/views.py",
-		"/home/alex/forwork/gurmanic/templates/article_preview_tag.html",
-		"/home/alex/forwork/gurmanic/templates/adv.html",
-		"/home/alex/forwork/filmoved_styles/static/less/swiper.less",
-		"/home/alex/forwork/filmoved_styles/static/bower_components/owl.carousel/docs_src/templates/pages/docs/started-welcome.hbs",
-		"/home/alex/forwork/filmoved_styles/static/less/site.less",
-		"/home/alex/forwork/filmoved_styles/static/less/helpful-LESS-functions.less",
-		"/home/alex/forwork/filmoved_styles/static/less/nav.less",
-		"/home/alex/forwork/filmoved_styles/static/css/frameless.css",
-		"/home/alex/forwork/filmoved_styles/static/css/site.css",
-		"/home/alex/forwork/filmoved_styles/static/bower_components/swiper/src/js/swiper-intro.js",
-		"/home/alex/forwork/filmoved_styles/static/less/top-slider.less",
-		"/home/alex/forwork/filmoved_styles/swiper.html"
+		"/home/alex/forwork/gurmanic/auto_post/views.py"
 	],
 	"find":
 	{
@@ -532,6 +540,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"True",
+			"logging",
+			"jubber",
+			"h4",
+			"field",
+			"h4",
+			"div",
+			"h4",
+			"userprofile",
+			"user.",
+			"User.",
+			"user.",
+			"User.",
+			"User",
+			"custom_auth",
 			"static",
 			"custom_auth",
 			"TestProfile",
@@ -644,22 +667,7 @@
 			"angle",
 			"min_x",
 			"max_x",
-			"min_z",
-			"max_z",
-			"prosent",
-			"set_angles",
-			"lst",
-			"(car lst)",
-			"year",
-			"request.get",
-			"year",
-			"items",
-			"cs-focus",
-			"selButton",
-			"selPlaceholder",
-			"font",
-			"button",
-			"selPlaceholder"
+			"min_z"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -667,6 +675,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"jabber",
 			"test_app",
 			""
 		],
@@ -684,24 +693,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "apps/test_app/middleware.py",
+					"file": "apps/test_app/templates/test_app/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1023,
+						"buffer_size": 1610,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								220,
+								220
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -714,19 +723,80 @@
 				},
 				{
 					"buffer": 1,
-					"file": "apps/test_app/admin.py",
+					"file": "apps/test_app/tests.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 452,
+						"buffer_size": 1947,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1895,
+								1895
+							]
+						],
+						"settings":
+						{
+							"spell_check": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 663.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "apps/test_app/models.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								616,
+								616
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "apps/test_app/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								129,
+								129
 							]
 						],
 						"settings":
@@ -737,97 +807,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "apps/test_app/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2168,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								699,
-								699
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 810.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "apps/test_app/models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 956,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								476,
-								476
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "apps/test_app/tests.py",
-					"semi_transient": true,
+					"file": ".gitignore",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4402,
+						"buffer_size": 145,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								144,
+								144
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
-						"translation.x": -0.0,
-						"translation.y": 108.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

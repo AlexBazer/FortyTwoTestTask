@@ -128,6 +128,7 @@ TEMPLATE_DIRS = (
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
 
+# Set up custom user model
 AUTH_USER_MODEL = 'test_app.CustomUser'
 
 # Set up logger

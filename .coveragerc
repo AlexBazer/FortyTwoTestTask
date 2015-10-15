@@ -1,0 +1,6 @@
+[run]
+omit =
+    */wsgi.py
+    */tests.py
+    */site-packages/*
+    */migrations/*
