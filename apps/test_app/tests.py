@@ -1,8 +1,8 @@
 from django.test import TestCase, Client
 from django.utils.timezone import now
 from apps.test_app.models import CustomUser
-from test_app.models import SipmleRequest
-from test_app.views import serialize_requests
+from apps.test_app.models import SipmleRequest
+from apps.test_app.views import serialize_requests
 
 import json
 

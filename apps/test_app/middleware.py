@@ -1,6 +1,6 @@
 import json
 
-from test_app.models import SipmleRequest
+from apps.test_app.models import SipmleRequest
 
 
 class SaveRequestMiddleware(object):
