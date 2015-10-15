@@ -151,17 +151,17 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
-        'file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'filters': ['require_debug_false'],
-            'formatter': 'verbose',
-            'filename': 'fortytwo_test_task.log',
-        },
+        # 'file': {
+        #     'level': 'WARNING',
+        #     'class': 'logging.FileHandler',
+        #     'filters': ['require_debug_false'],
+        #     'formatter': 'verbose',
+        #     'filename': 'fortytwo_test_task.log',
+        # },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console',],
             'level': 'ERROR',
             'propagate': True,
         }
