@@ -132,37 +132,30 @@ SOUTH_TESTS_MIGRATE = False
 AUTH_USER_MODEL = 'test_app.CustomUser'
 
 # Set up logger
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format': '%(levelname)s %(asctime)s %(message)s'
-#         },
-#     },
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         }
-#     },
-#     'handlers': {
-#         'console': {
-#             'level': 'INFO',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'verbose',
-#         },
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['console', ],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#         'app.test_app': {
-#             'handlers': ['console', ],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console', ],
+            'level': 'WARNING',
+            'propagate': False,
+        },
+        'app.test_app': {
+            'handlers': ['console', ],
+            'level': 'WARNING',
+        },
+    }
+}
