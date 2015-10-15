@@ -20,3 +20,4 @@ fortytwo_test_task.log
 .coverage
 fortytwo_test_task.sublime-project
 fortytwo_test_task.sublime-workspace
+*/settings/local.py
