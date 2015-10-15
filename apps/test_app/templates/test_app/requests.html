@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div id="requests-table"></div>
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="requests-table"></div>
+</div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="/static/js/requests.js"></script>
-</body>
-</html>
+<script src="{% static 'test_app/js/requests.js' %}"></script>
+{% endblock %}
