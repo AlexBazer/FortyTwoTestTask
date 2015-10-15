@@ -90,12 +90,19 @@ class TestRequests(TestCase):
         response = self.client.get('/requests/')
         self.assertEqual(response.status_code, 200)
 
-    def test_api_last_requests_handler(self):
+    def test_api_requests_handler(self):
         """
             Api last requests handler existence
         """
         response = self.client.get('/api/requests/')
         self.assertEqual(response.status_code, 200)
+
+    def test_api_requests_handler_method_not_allowed(self):
+        """
+            Test api requests handler METHOD NOT ALLOWED
+        """
+        response = self.client.post('/api/requests/')
+        self.assertEqual(response.status_code, 405)
 
     def test_serialize_requests(self):
         """
@@ -146,7 +153,7 @@ class TestRequests(TestCase):
 
     def test_api_mark_viewed(self):
         """
-            Mark requests with ids was posted 
+            Mark requests with ids was posted
         """
         for i in range(10):
             self.client.get('/')
@@ -169,3 +176,16 @@ class TestRequests(TestCase):
             filter(pk__in=last_requests_ids)
         for item in last_requests:
             self.assertTrue(item.viewed)
+
+    def test_api_mark_viewd_nothing_to_mark(self):
+        """
+            Test api mark viewed requests, in empty list was posted
+        """
+        response = self.client.post(
+            '/api/requests/',
+            json.dumps({'viewed_ids': []}),
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest',
+            content_type='application/json',
+        )
+
+        self.assertEqual(response.status_code, 200)
