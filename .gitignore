@@ -16,6 +16,8 @@ static
 *.dat
 .env
 env
+fortytwo_test_task.log
+.coverage
 fortytwo_test_task.sublime-project
 fortytwo_test_task.sublime-workspace
-fortytwo_test_task/settings/local.py
+*/settings/local.py

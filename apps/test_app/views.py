@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from test_app.models import User, SipmleRequest
+
+from apps.test_app.models import CustomUser, SipmleRequest
+from dateutil import parser as date_parser
 
 import json
-from dateutil import parser as date_parser
 
 
 def index(request):
-    user = User.objects.get(pk=1)
+    user = CustomUser.objects.first()
 
     return render(request, 'test_app/index.html', {'user': user})
 

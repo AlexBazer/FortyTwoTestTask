@@ -1,10 +1,10 @@
-import json
-
 from django.test import TestCase, Client
 from django.utils.timezone import now
-from django.contrib.auth.models import User
+from apps.test_app.models import CustomUser
 from test_app.models import SipmleRequest
 from test_app.views import serialize_requests
+
+import json
 
 
 class TestProfile(TestCase):
@@ -13,13 +13,6 @@ class TestProfile(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_user_additional_data_exists(self):
-        """
-            Simple test to check fixtures and additional user data
-        """
-        user = User.objects.get(pk=1)
-        self.assertTrue(user.userprofile)
-
     def test_index_page(self):
         """
             Test index page existence
@@ -27,35 +20,54 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_fields_existence(self):
+    def test_index_template_user(self):
         """
-            Test fields in response content
+            Check that index.html template was used in rendering
         """
-        user = User.objects.get(pk=1)
         response = self.client.get('/')
+        self.assertTemplateUsed(response, 'test_app/index.html')
+
+    def test_user_fields_existence_in_index_context(self):
+        """
+            Test user fields existence in index context
+        """
+        user = CustomUser.objects.first()
+        response = self.client.get('/')
+        self.assertEqual(user, response.context['user'])
+
+    def test_user_fields_existence_on_index_html(self):
+        """
+            Test user fields existence in index html
+        """
+        user = CustomUser.objects.first()
+        response = self.client.get('/')
+        # Fields to check
         test_fields = [
             'first_name',
             'last_name',
             'email',
-        ]
-        test_fields_profile = [
             'birthday',
-            'jubber_id',
+            'jabber_id',
             'skype_id',
             'other_contacts',
         ]
+
         for field in test_fields:
+            # Get field value from model and check it in response context
             content = getattr(user, field)
             if content:
                 self.assertContains(response, content)
             else:
                 continue
-        for field in test_fields_profile:
-            content = getattr(user.userprofile, field)
-            if content:
-                self.assertContains(response, content)
-            else:
-                continue
+
+    def test_users_table_is_empty_on_index_context(self):
+        """
+            If there is no user in CustomUser table context should be empty
+        """
+        users = CustomUser.objects.all()
+        users.delete()
+        response = self.client.get('/')
+        self.assertFalse(response.context['user'])
 
     def test_save_reqiest_middware(self):
         """

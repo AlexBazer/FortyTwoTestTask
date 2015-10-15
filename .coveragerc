@@ -1,0 +1,9 @@
+[run]
+omit =
+    */wsgi.py
+    */tests.py
+    env/*
+    */site-packages/*
+    */migrations/*
+
+source = .

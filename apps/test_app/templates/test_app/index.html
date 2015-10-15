@@ -1,50 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<style type="text/css">
-    .col1, .col2{
-        width: 50%;
-        float:left;
-    }
-    .field h4,
-    .field div{
-        display: inline-block;
-        vertical-align: middle;
-    }
-</style>
-<h1>42 Coffee Cups Test Assignment</h1>
-<div class="col1">
-    <h4>{{user.first_name}}</h4>
-    <h4>{{user.last_name}}</h4>
-    <h4>{{user.userprofile.birthday|date:"Y-m-d"}}</h4>    
-    <div class="field">
-        <h4>Bio:</h4>
-        <div>{{user.userprofile.biography}}</div>        
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'test_app/css/index.css' %}">
+{% endblock %}
+{% block content %}
+<section class="container">
+    <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <h3><strong>{{user.first_name}} {{user.last_name}}</strong></h3>
+            <h4>{{user.birthday|date:"Y-m-d"}}</h4>    
+            <div class="h4">
+                <span><strong>Bio:</strong></span>
+                <span>{{user.biography}}</span>
+            </div>            
+        </div>
+        <div class="col-md-5">
+            <h3><strong>Contacts</strong></h3>
+            <div class="h4">
+                <span><strong>Email:</strong></span>
+                <span>{{user.email}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Jabber:</strong></span>
+                <span>{{user.jabber_id}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Skype:</strong></span>
+                <span>{{user.skype_id}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Other contacts:</strong></span>
+                <span>{{user.other_contacts}}</span>
+            </div>            
+        </div>
     </div>
-</div>
-<div class="col2">
-    <h3>Contacts</h3>
-    <div class="field">
-        <h4>Email:</h4>
-        <div>{{user.email}}</div>
-    </div>
-    <div class="field">
-        <h4>Jabber:</h4>
-        <div>{{user.userprofile.jubber_id}}</div>
-    </div>
-    <div class="field">
-        <h4>Skype:</h4>
-        <div>{{user.userprofile.skype_id}}</div>
-    </div>
-    <div class="field">
-        <h4>Other contacts:</h4>
-        <div>{{user.userprofile.other_contacts}}</div>
-    </div>
-</div>
+</section>
 <hr>
 <a href="/requests/">Requests</a>
-</body>
-</html>
+
+{% endblock %}
