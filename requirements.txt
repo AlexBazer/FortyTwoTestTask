@@ -1,6 +1,7 @@
 42cc-pystyle==0.0.15
 Django==1.8.5
 argparse==1.2.1
+coverage==4.0.1
 flake8==2.4.1
 mccabe==0.3.1
 pep8==1.5.7
