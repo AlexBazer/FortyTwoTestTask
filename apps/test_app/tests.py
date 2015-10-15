@@ -64,4 +64,3 @@ class TestProfile(TestCase):
         users.delete()
         response = self.client.get('/')
         self.assertFalse(response.context['user'])
-
