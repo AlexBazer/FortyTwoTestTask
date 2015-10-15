@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from apps.test_app.models import CustomUser, SipmleRequest
+from test_app.models import CustomUser, SipmleRequest
 from dateutil import parser as date_parser
 
 import json
