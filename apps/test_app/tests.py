@@ -69,9 +69,14 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertFalse(response.context['user'])
 
-    def test_save_reqiest_middware(self):
+
+class TestRequests(TestCase):
+    """
+        Test Requests
+    """
+    def test_save_request_middware_creates(self):
         """
-            Send 3 requests and look for then in db
+            Send 3 requests and look for them in db
         """
         self.client.get('/')
         self.client.get('/')
@@ -85,9 +90,9 @@ class TestProfile(TestCase):
         response = self.client.get('/requests/')
         self.assertEqual(response.status_code, 200)
 
-    def test_api_last_requests(self):
+    def test_api_last_requests_handler(self):
         """
-            Api last requests existence
+            Api last requests handler existence
         """
         response = self.client.get('/api/requests/')
         self.assertEqual(response.status_code, 200)
@@ -106,9 +111,10 @@ class TestProfile(TestCase):
         }])
         self.assertEqual(manual_serialization, serialize_requests(request))
 
-    def test_api_requests_last_10(self):
+    def test_api_requests_get_last_10(self):
         """
             Last 10 requests on api
+            if GET parameter timestamp not set
         """
         for i in range(10):
             self.client.get('/')
@@ -123,7 +129,8 @@ class TestProfile(TestCase):
 
     def test_api_requests_get_last_added(self):
         """
-            Last added after the timestamp
+            Get last added requests after the timestamp
+            if GET parameter timestamp is set
         """
         timestamp = now().isoformat()
         for i in range(10):
@@ -139,7 +146,7 @@ class TestProfile(TestCase):
 
     def test_api_mark_viewed(self):
         """
-            Api mark viewed requests
+            Mark requests with ids was posted 
         """
         for i in range(10):
             self.client.get('/')

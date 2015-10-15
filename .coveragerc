@@ -5,5 +5,5 @@ omit =
     env/*
     */site-packages/*
     */migrations/*
-
+    fortytwo_test_task/settings/*
 source = .
