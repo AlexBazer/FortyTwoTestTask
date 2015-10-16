@@ -61,7 +61,8 @@ def last_requests(request):
 
 
 def edit_user(request):
-    return render(request, 'test_app/edit_user.html')
+    user = CustomUser.objects.first()
+    return render(request, 'test_app/edit_user.html', {'custom_user': user})
 
 
 def serialize_requests(requests):
