@@ -16,7 +16,12 @@ class CustomUser(AbstractUser):
         null=True)
     biography = models.TextField(u'Biography', blank=True, null=True)
     other_contacts = models.TextField(u'Other contacts', blank=True, null=True)
-    photo = models.ImageField(u'User Proto', upload_to='photos')
+    photo = models.ImageField(
+        u'User Proto',
+        upload_to='photos',
+        blank=True,
+        null=True
+    )
 
     class Meta:
         app_label = 'test_app'
