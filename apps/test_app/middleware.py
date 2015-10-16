@@ -25,8 +25,10 @@ class SaveRequestMiddleware(object):
             # Have issue with posting
             # # RawPostDataException: You cannot access
             # # body after reading from request's data stream
+            # # https://docs.djangoproject.com/en/dev/
+            # # # topics/http/middleware/#process-view
             # 'post': request.POST,
-            'raw_post': request.body,
+            # 'raw_post': request.body,
         }
         SipmleRequest.objects.create(
             data=json.dumps(request_to_store)
