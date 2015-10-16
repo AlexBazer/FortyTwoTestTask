@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'test_app/css/index.css' %}">
+{% endblock %}
+{% block content %}
+<section class="container">
+    <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
+    <form>
+        {% csrf_token %}
+        {{form.as_p}}
+    </form>
+<!--     <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <h3><strong>{{custom_user.first_name}} {{custom_user.last_name}}</strong></h3>
+            <h4>{{custom_user.birthday|date:"Y-m-d"}}</h4>    
+            <div class="h4">
+                <span><strong>Bio:</strong></span>
+                <span>{{custom_user.biography}}</span>
+            </div>            
+        </div>
+        <div class="col-md-5">
+            <h3><strong>Contacts</strong></h3>
+            <div class="h4">
+                <span><strong>Email:</strong></span>
+                <span>{{custom_user.email}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Jabber:</strong></span>
+                <span>{{custom_user.jabber_id}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Skype:</strong></span>
+                <span>{{custom_user.skype_id}}</span>
+            </div>
+            <div class="h4">
+                <span><strong>Other contacts:</strong></span>
+                <span>{{custom_user.other_contacts}}</span>
+            </div>            
+        </div>
+    </div> -->
+    <hr>
+    <a href="/requests/">Requests</a>
+</section>
+
+{% endblock %}
