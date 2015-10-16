@@ -1,8 +1,11 @@
+from StringIO import StringIO
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, Client
 from django.utils.timezone import now
 from test_app.models import CustomUser
 from test_app.models import SipmleRequest
 from test_app.views import serialize_requests
+from test_app.forms import CustomUserForm
 
 import json
 
@@ -189,3 +192,49 @@ class TestRequests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
+
+
+class TestEditCustomUser(TestCase):
+
+    def test_form_is_valid_and_data_saved(self):
+        """
+            Form used only for updating data in CustomUser
+        """
+        new_user_data = {
+            'first_name': 'Ronam',
+            'last_name': 'Romonovich',
+            'birthday': '1985-10-05',
+            'skype_id': 'rom_rom',
+            'jabber_id': 'rom_rom@ya.ya',
+            'other_contacts': 'long text',
+            'biography': 'another long text',
+        }
+        imgfile = StringIO('GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
+                     '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;')
+        imgfile.name = 'test_img_file.gif'
+        file_dict = {
+            'photo': SimpleUploadedFile(
+                imgfile.name,
+                imgfile.read(),
+                content_type='image/gif'
+            )
+        }
+
+        user = CustomUser.objects.first()
+        form = CustomUserForm(
+            new_user_data,
+            file_dict,
+            instance=user)
+        form.is_valid()
+        self.assertTrue(form.is_valid())
+        # save form
+        form.save()
+
+        # Test saved data to custom user
+        birthday = new_user_data.pop('birthday')
+        for key in new_user_data:
+            self.assertEqual(new_user_data[key], getattr(user, key))
+        # Check user burthday
+        self.assertEqual(str(user.birthday), birthday)
+        # Check image
+        self.assertIn('test_img_file', user.photo.path)
