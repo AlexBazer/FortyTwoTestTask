@@ -10,7 +10,7 @@ import json
 def index(request):
     user = CustomUser.objects.first()
 
-    return render(request, 'test_app/index.html', {'user': user})
+    return render(request, 'test_app/index.html', {'custom_user': user})
 
 
 def requests(request):

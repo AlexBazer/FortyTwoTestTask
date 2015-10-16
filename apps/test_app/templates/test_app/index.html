@@ -9,30 +9,30 @@
     <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
-            <h3><strong>{{user.first_name}} {{user.last_name}}</strong></h3>
-            <h4>{{user.birthday|date:"Y-m-d"}}</h4>    
+            <h3><strong>{{custom_user.first_name}} {{custom_user.last_name}}</strong></h3>
+            <h4>{{custom_user.birthday|date:"Y-m-d"}}</h4>    
             <div class="h4">
                 <span><strong>Bio:</strong></span>
-                <span>{{user.biography}}</span>
+                <span>{{custom_user.biography}}</span>
             </div>            
         </div>
         <div class="col-md-5">
             <h3><strong>Contacts</strong></h3>
             <div class="h4">
                 <span><strong>Email:</strong></span>
-                <span>{{user.email}}</span>
+                <span>{{custom_user.email}}</span>
             </div>
             <div class="h4">
                 <span><strong>Jabber:</strong></span>
-                <span>{{user.jabber_id}}</span>
+                <span>{{custom_user.jabber_id}}</span>
             </div>
             <div class="h4">
                 <span><strong>Skype:</strong></span>
-                <span>{{user.skype_id}}</span>
+                <span>{{custom_user.skype_id}}</span>
             </div>
             <div class="h4">
                 <span><strong>Other contacts:</strong></span>
-                <span>{{user.other_contacts}}</span>
+                <span>{{custom_user.other_contacts}}</span>
             </div>            
         </div>
     </div>

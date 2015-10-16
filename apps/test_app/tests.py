@@ -36,7 +36,7 @@ class TestProfile(TestCase):
         """
         user = CustomUser.objects.first()
         response = self.client.get('/')
-        self.assertEqual(user, response.context['user'])
+        self.assertEqual(user, response.context['custom_user'])
 
     def test_user_fields_existence_on_index_html(self):
         """
@@ -70,7 +70,7 @@ class TestProfile(TestCase):
         users = CustomUser.objects.all()
         users.delete()
         response = self.client.get('/')
-        self.assertFalse(response.context['user'])
+        self.assertFalse(response.context['custom_user'])
 
 
 class TestRequests(TestCase):
@@ -259,5 +259,5 @@ class TestEditCustomUser(TestCase):
         """
         user = CustomUser.objects.first()
         response = self.client.get('/edit_user/')
-        self.assertEqual(response.context['user'], user)
+        self.assertEqual(response.context['custom_user'], user)
 
