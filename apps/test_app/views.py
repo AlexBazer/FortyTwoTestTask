@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from test_app.models import CustomUser, SipmleRequest
+from test_app.forms import CustomUserForm
 from dateutil import parser as date_parser
 
 import json
@@ -62,7 +63,11 @@ def last_requests(request):
 
 def edit_user(request):
     user = CustomUser.objects.first()
-    return render(request, 'test_app/edit_user.html', {'custom_user': user})
+    form = CustomUserForm(instance=user)
+    return render(request, 'test_app/edit_user.html', {
+        'custom_user': user,
+        'form': form
+    })
 
 
 def serialize_requests(requests):

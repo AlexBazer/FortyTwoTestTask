@@ -258,6 +258,9 @@ class TestEditCustomUser(TestCase):
             Edit user context contain first user from db
         """
         user = CustomUser.objects.first()
+        form = CustomUserForm(instance=user)
         response = self.client.get('/edit_user/')
+
         self.assertEqual(response.context['custom_user'], user)
+        self.assertEqual(response.context['form'].instance, form.instance)
 
