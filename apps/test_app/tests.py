@@ -243,14 +243,14 @@ class TestEditCustomUser(TestCase):
         """
             Test edit user page existence
         """
-        response = self.client.get('/edit_user/')
+        response = self.client.get('/edit-user/')
         self.assertEqual(response.status_code, 200)
 
     def test_edit_user_template_used(self):
         """
             Check that edit_user.html template was used in rendering
         """
-        response = self.client.get('/edit_user/')
+        response = self.client.get('/edit-user/')
         self.assertTemplateUsed(response, 'test_app/edit_user.html')
 
     def test_edit_user_context(self):
@@ -259,8 +259,7 @@ class TestEditCustomUser(TestCase):
         """
         user = CustomUser.objects.first()
         form = CustomUserForm(instance=user)
-        response = self.client.get('/edit_user/')
+        response = self.client.get('/edit-user/')
 
         self.assertEqual(response.context['custom_user'], user)
         self.assertEqual(response.context['form'].instance, form.instance)
-
