@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 
-from apps.test_app.models import CustomUser
+from test_app.models import CustomUser
 
 
 class TestProfile(TestCase):

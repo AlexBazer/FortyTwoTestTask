@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from apps.test_app.models import CustomUser
+from test_app.models import CustomUser
 
 
 # Create your views here.
