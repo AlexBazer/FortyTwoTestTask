@@ -9,6 +9,12 @@ class SaveRequestMiddleware(object):
         Only skip api requests to make in easy for sqlite
     """
     def process_response(self, request, response):
+        """
+            Cant gather information from POST and body
+            RawPostDataException: You cannot access
+            body after reading from request's data stream
+https://docs.djangoproject.com/en/dev/topics/http/middleware/#process-view
+        """
         # Collect request data to the dict
         if '/api/requests/' in request.path:
             # have to remove requests to api
@@ -22,11 +28,6 @@ class SaveRequestMiddleware(object):
             'remote_addr': request.META.get('REMOTE_ADDR', None),
             'cookies': request.COOKIES,
             'get': request.GET,
-            # Have issue with posting
-            # # RawPostDataException: You cannot access
-            # # body after reading from request's data stream
-            # # https://docs.djangoproject.com/en/dev/
-            # # # topics/http/middleware/#process-view
             # 'post': request.POST,
             # 'raw_post': request.body,
         }

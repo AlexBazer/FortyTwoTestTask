@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import ModelForm
 
 from test_app.models import CustomUser
 

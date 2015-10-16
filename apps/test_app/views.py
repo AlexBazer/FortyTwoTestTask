@@ -63,7 +63,14 @@ def last_requests(request):
 
 def edit_user(request):
     user = CustomUser.objects.first()
-    form = CustomUserForm(instance=user)
+
+    if request.method == 'POST':
+        form = CustomUserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+    elif request.method == 'GET':
+        form = CustomUserForm(instance=user)
+
     return render(request, 'test_app/edit_user.html', {
         'custom_user': user,
         'form': form

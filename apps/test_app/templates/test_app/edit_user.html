@@ -7,7 +7,7 @@
 {% block content %}
 <section class="container">
     <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
-    <form>
+    <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-primary">Сохранить</button>

@@ -209,8 +209,10 @@ class TestEditCustomUser(TestCase):
             'other_contacts': 'long text',
             'biography': 'another long text',
         }
-        imgfile = StringIO('GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
-                     '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;')
+        imgfile = StringIO(
+            'GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
+            '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;'
+        )
         imgfile.name = 'test_img_file.gif'
         file_dict = {
             'photo': SimpleUploadedFile(
@@ -277,8 +279,10 @@ class TestEditCustomUser(TestCase):
             'other_contacts': 'long text',
             'biography': 'another long text',
         }
-        imgfile = StringIO('GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
-                     '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;')
+        imgfile = StringIO(
+            'GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
+            '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;'
+        )
         imgfile.name = 'test_img_file.gif'
         photo = SimpleUploadedFile(
             imgfile.name,
@@ -286,15 +290,15 @@ class TestEditCustomUser(TestCase):
             content_type='image/gif'
         )
         new_user_data.update({'photo': photo})
-
-        user = CustomUser.objects.first()
         self.client.post(
             '/edit-user/',
             new_user_data,
-            content_type='multipart/form-data',
         )
+        user = CustomUser.objects.first()
         # Test saved data to custom user
         birthday = new_user_data.pop('birthday')
+        # Remove photo
+        new_user_data.pop('photo')
         for key in new_user_data:
             self.assertEqual(new_user_data[key], getattr(user, key))
         # Check user birthday
