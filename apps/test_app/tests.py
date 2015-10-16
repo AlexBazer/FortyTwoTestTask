@@ -23,7 +23,7 @@ class TestProfile(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_index_template_user(self):
+    def test_index_template_used(self):
         """
             Check that index.html template was used in rendering
         """
@@ -238,3 +238,26 @@ class TestEditCustomUser(TestCase):
         self.assertEqual(str(user.birthday), birthday)
         # Check image
         self.assertIn('test_img_file', user.photo.path)
+
+    def test_edit_user_page(self):
+        """
+            Test edit user page existence
+        """
+        response = self.client.get('/edit_user/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_edit_user_template_used(self):
+        """
+            Check that edit_user.html template was used in rendering
+        """
+        response = self.client.get('/edit_user/')
+        self.assertTemplateUsed(response, 'test_app/edit_user.html')
+
+    def test_edit_user_context(self):
+        """
+            Edit user context contain first user from db
+        """
+        user = CustomUser.objects.first()
+        response = self.client.get('/edit_user/')
+        self.assertEqual(response.context['user'], user)
+

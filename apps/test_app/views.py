@@ -60,6 +60,10 @@ def last_requests(request):
     return HttpResponse("Method not allowed", status=405)
 
 
+def edit_user(request):
+    return render(request, 'test_app/edit_user.html')
+
+
 def serialize_requests(requests):
     """
         Serialize requests

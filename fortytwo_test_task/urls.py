@@ -15,5 +15,6 @@ urlpatterns = patterns(
         r'^api/requests/$',
         'test_app.views.last_requests',
         name='last_requests'
-    )
+    ),
+    url(r'^edit_user/$', 'test_app.views.edit_user', name='edit_user')
 )
