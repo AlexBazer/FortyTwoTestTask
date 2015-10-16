@@ -22,7 +22,10 @@ class SaveRequestMiddleware(object):
             'remote_addr': request.META.get('REMOTE_ADDR', None),
             'cookies': request.COOKIES,
             'get': request.GET,
-            'post': request.POST,
+            # Have issue with posting
+            # # RawPostDataException: You cannot access
+            # # body after reading from request's data stream
+            # 'post': request.POST,
             'raw_post': request.body,
         }
         SipmleRequest.objects.create(
