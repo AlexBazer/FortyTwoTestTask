@@ -238,3 +238,7 @@ class TestEditCustomUser(TestCase):
         self.assertEqual(str(user.birthday), birthday)
         # Check image
         self.assertIn('test_img_file', user.photo.path)
+
+    def test_form_test(self):
+        form = CustomUserForm()
+        self.assertFalse(form.is_valid())
