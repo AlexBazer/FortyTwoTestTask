@@ -305,3 +305,45 @@ class TestEditCustomUser(TestCase):
         self.assertEqual(str(user.birthday), birthday)
         # Check image
         self.assertIn('test_img_file', user.photo.path)
+
+    def test_edit_user_page_post_json(self):
+        """
+            After POST view should return json with current fields values
+        """
+        new_user_data = {
+            'first_name': 'Ronam',
+            'last_name': 'Romonovich',
+            'birthday': '1985-10-05',
+            'skype_id': 'rom_rom',
+            'jabber_id': 'rom_rom@ya.ya',
+            'other_contacts': 'long text',
+            'biography': 'another long text',
+        }
+        response = self.client.post(
+            '/edit-user/',
+            new_user_data,
+        )
+        form_data = json.loads(response.content)
+        self.assertEqual(form_data['fields'], new_user_data)
+        # And in this case errors dict is empty
+        self.assertFalse(form_data['errors'])
+
+    def test_edit_user_page_pose_json_error(self):
+        """
+            After POST with wrong date format view should return error
+        """
+        new_user_data = {
+            'first_name': 'Ronam',
+            'last_name': 'Romonovich',
+            'birthday': '10-05-1985',
+            'skype_id': 'rom_rom',
+            'jabber_id': 'rom_rom@ya.ya',
+            'other_contacts': 'long text',
+            'biography': 'another long text',
+        }
+        response = self.client.post(
+            '/edit-user/',
+            new_user_data,
+        )
+        form_data = json.loads(response.content)
+        self.assertTrue(form_data['errors']['birthday'])
