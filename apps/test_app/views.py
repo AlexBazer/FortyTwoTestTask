@@ -68,6 +68,20 @@ def edit_user(request):
         form = CustomUserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
+        # Collect form errors to be serialized
+        errors = {}
+        # Collect field errors
+        for field in form.errors:
+            errors[field] = form.errors[field]
+        # Add non_field_errors if exists
+        if form.non_field_errors():
+            errors['non_field_errors'] = form.non_field_errors()
+
+        return HttpResponse(
+            json.dumps({'errors': errors}),
+            content_type='application/json'
+        )
+
     elif request.method == 'GET':
         form = CustomUserForm(instance=user)
 
