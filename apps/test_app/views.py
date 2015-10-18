@@ -63,7 +63,6 @@ def last_requests(request):
 
 def edit_user(request):
     user = CustomUser.objects.first()
-
     if request.method == 'POST':
         form = CustomUserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
