@@ -3,6 +3,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'test_app/css/index.css' %}">
+{{form.media}}
 {% endblock %}
 {% block content %}
 <section class="container">
@@ -44,5 +45,4 @@
     <hr>
     <a href="/requests/">Requests</a>
 </section>
-
 {% endblock %}

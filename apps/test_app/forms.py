@@ -1,9 +1,12 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, DateField, DateInput
 
 from test_app.models import CustomUser
+from test_app.widgets import DateSelectorWidget
 
 
 class CustomUserForm(ModelForm):
+    birthday = DateField(widget=DateSelectorWidget())
+
     def __init__(self, *args, **kwargs):
         super(CustomUserForm, self).__init__(*args, **kwargs)
 
@@ -14,6 +17,7 @@ class CustomUserForm(ModelForm):
             'skype_id',
             'biography',
             'other_contacts',
+            'birthday'
         ]
         for field in form_control_fields:
             self.fields[field].widget.attrs.update({'class': 'form-control'})
