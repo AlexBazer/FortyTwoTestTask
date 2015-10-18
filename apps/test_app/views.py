@@ -83,7 +83,6 @@ def edit_user(request):
 
     elif request.method == 'GET':
         form = CustomUserForm(instance=user)
-
     return render(request, 'test_app/edit_user.html', {
         'custom_user': user,
         'form': form

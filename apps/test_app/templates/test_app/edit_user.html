@@ -8,9 +8,34 @@
 {% block content %}
 <section class="container">
     <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
+    <form method="POST" enctype='multipart/form-data'>
+        <div class="row">
+            {% csrf_token %}
+            <div class="col-md-5 col-md-offset-1">
+                <div class="form-group">{{form.first_name.label_tag}}{{form.first_name}}</div>
+                <div class="form-group">{{form.last_name.label_tag}}{{form.last_name}}</div>
+                <div class="form-group">{{form.birthday.label_tag}}{{form.birthday}}</div>
+                <div class="form-group">
+                    {{form.photo.label_tag}}{{form.photo}}
+                    <div class="thumbnail">
+                        {% if not form.instance.photo %}
+                        <img src="{% static 'test_app/img/no_image.jpg'%}">
+                        {% else %}
+                        <img src="{{form.instance.photo.url}}">
+                        {% endif %}    
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">{{form.email.label_tag}}{{form.email}}</div>
+                <div class="form-group">{{form.skype_id.label_tag}}{{form.skype_id}}</div>
+                <div class="form-group">{{form.jabber_id.label_tag}}{{form.jabber_id}}</div>
+                <div class="form-group">{{form.other_contacts.label_tag}}{{form.other_contacts}}</div>
+                <div class="form-group">{{form.biography.label_tag}}{{form.biography}}</div>
+            </div>
+            {#{form.as_p}#}
+            
+        </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 <!--     <div class="row">
