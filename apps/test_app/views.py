@@ -74,6 +74,7 @@ def edit_user(request):
             errors[field] = form.errors[field]
         # Add non_field_errors if exists
         if form.non_field_errors():
+            # Have to come up with example to test non_field_errors
             errors['non_field_errors'] = form.non_field_errors()
 
         return HttpResponse(

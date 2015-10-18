@@ -199,11 +199,14 @@ class TestEditCustomUser(TestCase):
     def test_form_is_valid_and_data_saved(self):
         """
             Test Form on validnes and data saving
+            birthday_1 used for hidden field in DateSelectorWidget,
+            but birthday is the name of field in form
         """
         new_user_data = {
             'first_name': 'Ronam',
             'last_name': 'Romonovich',
-            'birthday': '1985-10-05',
+            'birthday_1': '1985-10-05',
+            'email': 'some@some.com',
             'skype_id': 'rom_rom',
             'jabber_id': 'rom_rom@ya.ya',
             'other_contacts': 'long text',
@@ -233,7 +236,7 @@ class TestEditCustomUser(TestCase):
         form.save()
 
         # Test saved data to custom user
-        birthday = new_user_data.pop('birthday')
+        birthday = new_user_data.pop('birthday_1')
         for key in new_user_data:
             self.assertEqual(new_user_data[key], getattr(user, key))
         # Check user birthday
@@ -269,11 +272,13 @@ class TestEditCustomUser(TestCase):
     def test_edit_user_page_post(self):
         """
             Test edit user page on data changing
+            birthday_1 used for hidden field in DateSelectorWidget,
+            but birthday is the name of field in form
         """
         new_user_data = {
             'first_name': 'Ronam',
             'last_name': 'Romonovich',
-            'birthday': '1985-10-05',
+            'birthday_1': '1985-10-05',
             'email': 'some@some.com',
             'skype_id': 'rom_rom',
             'jabber_id': 'rom_rom@ya.ya',
@@ -297,7 +302,7 @@ class TestEditCustomUser(TestCase):
         )
         user = CustomUser.objects.first()
         # Test saved data to custom user
-        birthday = new_user_data.pop('birthday')
+        birthday = new_user_data.pop('birthday_1')
         # Remove photo
         new_user_data.pop('photo')
         for key in new_user_data:
@@ -310,11 +315,13 @@ class TestEditCustomUser(TestCase):
     def test_edit_user_page_pose_json_error(self):
         """
             After POST with wrong date format view should return error
+            birthday_1 used for hidden field in DateSelectorWidget,
+            but birthday is the name of field in form
         """
         new_user_data = {
             'first_name': 'Ronam',
             'last_name': 'Romonovich',
-            'birthday': '10-05-1985',
+            'birthday_1': '10-05-1985',
             'email': 'some@some.com',
             'skype_id': 'rom_rom',
             'jabber_id': 'rom_rom@ya.ya',

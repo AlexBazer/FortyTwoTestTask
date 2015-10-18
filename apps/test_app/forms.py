@@ -1,16 +1,17 @@
 from django.forms import ModelForm, DateField, ImageField, FileInput
 
 from test_app.models import CustomUser
-from test_app.widgets import DateSelectorWidget, TumbnailImage
+from test_app.widgets import DateSelectorWidget
 
 
 class CustomUserForm(ModelForm):
-    birthday = DateField(widget=DateSelectorWidget())
-    photo = ImageField(widget=FileInput(attrs={'accept': 'image/*'}))
+    birthday = DateField(widget=DateSelectorWidget(), required=False)
+    photo = ImageField(widget=FileInput(
+        attrs={'accept': 'image/*'}), required=False
+    )
 
     def __init__(self, *args, **kwargs):
         super(CustomUserForm, self).__init__(*args, **kwargs)
-
         form_control_fields = [
             'first_name',
             'last_name',
