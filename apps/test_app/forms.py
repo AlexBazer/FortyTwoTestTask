@@ -1,12 +1,13 @@
-from django.forms import ModelForm, DateField, DateInput
+from django.forms import ModelForm, DateField, ImageField
 
 from test_app.models import CustomUser
-from test_app.widgets import DateSelectorWidget
+from test_app.widgets import DateSelectorWidget, TumbnailImage
 
 
 class CustomUserForm(ModelForm):
     birthday = DateField(widget=DateSelectorWidget())
-
+    # photo = ImageField(widget=TumbnailImage())
+    
     def __init__(self, *args, **kwargs):
         super(CustomUserForm, self).__init__(*args, **kwargs)
 

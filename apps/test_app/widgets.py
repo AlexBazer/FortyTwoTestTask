@@ -1,4 +1,4 @@
-from django.forms import DateInput, MultiWidget, HiddenInput
+from django.forms import DateInput, MultiWidget, HiddenInput, FileInput
 from django.utils.safestring import mark_safe
 
 
@@ -74,3 +74,19 @@ class DateSelectorWidget(MultiWidget):
             'all': ('css/kalendae.css',)
         }
         js = ('js/kalendae.standalone.js',)
+
+
+class TumbnailImage(FileInput):
+    def __init__(self, attrs=None):
+        assept_attr = {'accept': 'image/*'}
+        if attrs:
+            attrs.update(assept_attr)
+        else:
+            attrs = assept_attr
+        super(TumbnailImage, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        data_widget_html = super(TumbnailImage, self).render(name, value, attrs)
+        thumbnail = '<span class="thumbnail"><img src="/static/test_app/img/no_image.jpg"></span>'
+        return mark_safe(thumbnail + data_widget_html)
+
