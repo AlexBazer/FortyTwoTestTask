@@ -1,0 +1,12 @@
+form .form-success{
+    visibility: hidden;
+}
+.spinner{
+    width: 200px;
+    height: 200px;
+    background-image:url(/static/test_app/img/spinner.gif); 
+    display: inline-block;
+    top: 30%;
+    left: 40%;
+    position: absolute;
+}

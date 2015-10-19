@@ -1,0 +1,18 @@
+.kalendae .k-title, .kalendae .k-header, .kalendae .k-days,
+.kalendae .k-calendar{
+    width: 205px;
+}
+.kalendae .k-header span{
+    width: 27px;
+}
+.kalendae .k-days span{    
+    text-align: center;
+    width: 27px;
+    height: 1.8em;
+    line-height: 1.5em;
+    padding:2px;
+}
+/*hide close button*/
+.k-btn-close{
+    display: none;
+}

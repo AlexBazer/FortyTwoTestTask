@@ -71,6 +71,6 @@ class DateSelectorWidget(MultiWidget):
 
     class Media:
         css = {
-            'all': ('css/kalendae.css',)
+            'all': ('css/kalendae.css', 'css/kalendae-theme.css')
         }
         js = ('js/kalendae.standalone.js',)
