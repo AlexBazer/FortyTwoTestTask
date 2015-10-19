@@ -313,7 +313,30 @@ class TestEditCustomUser(TestCase):
         # Check image
         self.assertIn('test_img_file', user.photo.path)
 
-    def test_edit_user_page_pose_json_error(self):
+    def test_edit_user_page_post_json(self):
+        """
+            Test only on photo url in json fields
+            for now, there are no need for other fields
+        """
+        imgfile = StringIO(
+            'GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00'
+            '\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;'
+        )
+        imgfile.name = 'test_img_file.gif'
+        photo = SimpleUploadedFile(
+            imgfile.name,
+            imgfile.read(),
+            content_type='image/gif'
+        )
+        response = self.client.post(
+            '/edit-user/',
+            {'photo': photo},
+        )
+        form_response = json.loads(response.content)
+        self.assertIn('test_img_file', form_response['fields']['photo'])
+
+
+    def test_edit_user_page_post_json_error(self):
         """
             After POST with wrong date format view should return error
             birthday_1 used for hidden field in DateSelectorWidget,
