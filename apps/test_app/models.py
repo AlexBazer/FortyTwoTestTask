@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.files import File
+
+from PIL import Image
+from StringIO import StringIO
 
 
 class CustomUser(AbstractUser):
+    RESIZE_WIDTH = 200,
+    RESIZE_HEIGHT = 200
+
     birthday = models.DateField(u'Birthday', blank=True, null=True)
     jabber_id = models.CharField(
         u'jabber id',
@@ -20,8 +27,27 @@ class CustomUser(AbstractUser):
         u'User Proto',
         upload_to='photos',
         blank=True,
-        null=True
+        null=True,
     )
+
+    def save(self, *args, **kwargs):
+        if self.photo:
+            image = Image.open(StringIO(self.photo.read()))
+            image.thumbnail(
+                (self.RESIZE_WIDTH, self.RESIZE_HEIGHT),
+                Image.ANTIALIAS
+            )
+            output = StringIO()
+            image.save(
+                output,
+                format=image.format,
+                quality=100,
+                optimize=True,
+                progressive=True
+            )
+            output.seek(0)
+            self.photo = File(output, self.photo.name)
+        super(CustomUser, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'test_app'
