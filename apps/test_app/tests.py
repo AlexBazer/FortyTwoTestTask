@@ -2,11 +2,13 @@ from StringIO import StringIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, Client
 from django.utils.timezone import now
+from django.conf import settings
 from test_app.models import CustomUser
 from test_app.models import SipmleRequest
 from test_app.views import serialize_requests
 from test_app.forms import CustomUserForm
 
+import os
 import json
 
 
@@ -334,3 +336,14 @@ class TestEditCustomUser(TestCase):
         )
         form_response = json.loads(response.content)
         self.assertTrue(form_response['errors']['birthday'])
+
+    def test_edit_user_image_resize(self):
+        pwd = os.path.dirname(__file__)
+        with open(pwd + '/static/test_app/img/no-image-300x300.jpg') as fp:
+            self.client.post(
+                '/edit-user/',
+                {'photo': fp},
+            )
+        user = CustomUser.objects.first()
+        self.assertEquals(user.photo.width, 200)
+        self.assertEquals(user.photo.height, 200)
