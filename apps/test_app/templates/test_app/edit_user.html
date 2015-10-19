@@ -2,13 +2,13 @@
 {% load staticfiles %}
 
 {% block extra_head %}
-<link rel="stylesheet" type="text/css" href="{% static 'test_app/css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'test_app/css/edit-user.css' %}">
 {{form.media}}
 {% endblock %}
 {% block content %}
 <section class="container">
     <h1 class="text-center">42 Coffee Cups Test Assignment</h1>
-    <form id="edit-user-form" method="POST" enctype='multipart/form-data'>
+    <form id="edit-user-form" method="POST" enctype='multipart/form-data' action="/">
         <div class="row">
             {% csrf_token %}
             <div class="col-md-5 col-md-offset-1">
@@ -33,13 +33,11 @@
                 <div class="form-group">{{form.other_contacts.label_tag}}{{form.other_contacts}}</div>
                 <div class="form-group">{{form.biography.label_tag}}{{form.biography}}</div>
             </div>
-            {#{form.as_p}#}
-            
         </div>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <hr>
+        <button type="submit" class="btn btn-primary col-md-offset-1">Save</button>
+        <a href="/" class="btn btn-default">Cancel</a>
     </form>
-    <hr>
-    <a href="/requests/">Requests</a>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="{% static 'js/jquery.form.min.js' %}"></script>
 <script src="{% static 'test_app/js/edit_user.js' %}"></script>

@@ -69,6 +69,9 @@ def edit_user(request):
             form.save()
         # Collect form errors to be serialized
         errors = {}
+        fields = {}
+        if form.instance.photo:
+            fields['photo'] = form.instance.photo.url
         # Collect field errors
         for field in form.errors:
             errors[field] = form.errors[field]
@@ -78,7 +81,7 @@ def edit_user(request):
             errors['non_field_errors'] = form.non_field_errors()
 
         return HttpResponse(
-            json.dumps({'errors': errors}),
+            json.dumps({'errors': errors, 'fields': fields}),
             content_type='application/json'
         )
 
