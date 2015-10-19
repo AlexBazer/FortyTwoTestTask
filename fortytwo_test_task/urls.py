@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.contrib.auth import views as auth_views
 from django.contrib import admin
 urlpatterns = patterns(
     '',
@@ -11,6 +12,7 @@ urlpatterns = patterns(
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'test_app.views.index', name='index'),
+    url(r'^login/', auth_views.login, {'template_name': 'test_app/login.html'}),
     url(r'^requests/$', 'test_app.views.requests', name='requests'),
     url(
         r'^api/requests/$',

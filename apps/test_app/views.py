@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from test_app.models import CustomUser, SipmleRequest
 from test_app.forms import CustomUserForm
@@ -61,6 +62,7 @@ def last_requests(request):
     return HttpResponse("Method not allowed", status=405)
 
 
+@login_required()
 def edit_user(request):
     user = CustomUser.objects.first()
     if request.method == 'POST':
