@@ -335,7 +335,6 @@ class TestEditCustomUser(TestCase):
         form_response = json.loads(response.content)
         self.assertIn('test_img_file', form_response['fields']['photo'])
 
-
     def test_edit_user_page_post_json_error(self):
         """
             After POST with wrong date format view should return error
@@ -364,7 +363,7 @@ class TestEditCustomUser(TestCase):
             Test image resize
         """
         pwd = os.path.dirname(__file__)
-        with open(pwd + '/static/test_app/img/no-image-300x300.jpg') as fp:
+        with open(pwd + '/static/test_app/img/test.jpg') as fp:
             self.client.post(
                 '/edit-user/',
                 {'photo': fp},

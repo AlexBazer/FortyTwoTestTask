@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.files import File
 
-from PIL import Image
+from PIL import Image, ImageOps
 from StringIO import StringIO
 
 
 class CustomUser(AbstractUser):
-    RESIZE_WIDTH = 200,
+    RESIZE_WIDTH = 200
     RESIZE_HEIGHT = 200
 
     birthday = models.DateField(u'Birthday', blank=True, null=True)
@@ -33,12 +33,13 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if self.photo:
             image = Image.open(StringIO(self.photo.read()))
-            image.thumbnail(
+            thumbnail = ImageOps.fit(
+                image,
                 (self.RESIZE_WIDTH, self.RESIZE_HEIGHT),
                 Image.ANTIALIAS
             )
             output = StringIO()
-            image.save(
+            thumbnail.save(
                 output,
                 format=image.format,
                 quality=100,
