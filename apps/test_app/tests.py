@@ -371,3 +371,9 @@ class TestEditCustomUser(TestCase):
         user = CustomUser.objects.first()
         self.assertEquals(user.photo.width, 200)
         self.assertEquals(user.photo.height, 200)
+
+
+class LoginUserTest(TestCase):
+    def test_enter_edit_page_redirect_to_login(self):
+        response = self.client.get('/edit-user/')
+        self.assertEqual(response.status_code, 302)
