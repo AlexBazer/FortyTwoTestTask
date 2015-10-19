@@ -10,3 +10,6 @@ form .form-success{
     left: 40%;
     position: absolute;
 }
+.thumbnail{
+    width: 210px;
+}
